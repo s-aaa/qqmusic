@@ -8,11 +8,832 @@
 </head>
 <body>
 	<audio id="audio" src="./1.mp3" ></audio>
-	<div class="m_player mini_version" id="divplayer" role="application" style="z-index: 100000; left: 0px;">
+
+
+<body>
+
+<div class="frame_top" role="banner" id="js_frame_top">
+	<div class="header_top">
+        <div class="navlist">
+            <ul>             
+                <li class="mod_user" id="top_info"><p class="top_info unlogined">您还未登录，<a href="javascript:;" onclick="g_user.openLoginPage();return false;">马上登录</a></p></li>
+                <li class="nav_musicvip" id="musicvip"><span class="line">&nbsp;</span> <span class="musicvip_text"><a title="绿钻" href="http://vip.music.qq.com" target="_blank"><img src="http://i.gtimg.cn/music/icon/v1/pc/vip.png?max_age=2592000" alt="绿钻"><span>绿钻</span></a></span></li>
+		<li class="nav_musicbag"><span class="line">&nbsp;</span> <span class="musicbag_text"><a href="http://y.qq.com/topic/suixiangbao/index.html" target="_blank"><img src="http://imgcache.gtimg.cn/music/icon/v1/pc/sui.png?max_age=2592000" alt="付费音乐包"><span>付费音乐包</span></a></span><a href="javascript:;" class="btn_open_musicbag" id="musicbag" style="display:none;"></a></li>
+                <li class="nav_software"><span class="line">&nbsp;</span><a href="http://kg.qq.com/?pgv_ref=qqmusic.y.topmenu" target="_blank" title="全民K歌"><span>全民K歌</span></a></li>
+                <li class="nav_software"><a href="http://y.qq.com/yanchu/?pgv_ref=qqmusic.y.topmenu" target="_blank" title="QQ演出"><span>QQ演出</span></a></li>             
+                <li class="nav_qplay"><a href="http://y.qq.com/y/static/down/qplay.html?pgv_ref=qqmusic.y.topmenu" target="_blank" title="QPlay"><span>QPlay</span></a></li>
+            </ul>
+        </div>
+    </div>
+	<div class="main_top" id="divtopmenu">
+		<h1 class="frame_logo"><img class="img_logo" src="http://imgcache.gtimg.cn/mediastyle/musicprotal/img/frame_logo_min.png?max_age=2592000" alt="QQ音乐"><a href="http://y.qq.com/" onclick="top.pgvClickStat('logo.qqmusic');" class="logo" title="QQ音乐-中国最新最全免费正版高品质音乐平台！">QQ音乐</a></h1>
+		<div class="frame_search">
+			<a href="http://y.qq.com/y/static/s_search/search.html" class="hide" accesskey="s" target="contentFrame">需要搜索的朋友，在这里敲击回车键进入，或者按快捷键Alt加s进入</a>
+			<input type="text" value="找到好音乐" class="search_text" id="keyword" onfocus="if(this.value=='找到好音乐'){this.value='';};MUSIC.css.addClassName(this.parentNode, 'search_focus');MUSIC.widget.intellMatch.set(this.value);" onblur="if(this.value==''){this.value='找到好音乐';};MUSIC.css.removeClassName(this.parentNode, 'search_focus');MUSIC.widget.intellMatch.clear();" onkeydown="var event=MUSIC.event.getEvent();if(event.keyCode==13){if (window.frames['contentFrame'].location.href.indexOf('y.qq.com/y/static/s_search/')!=-1) { MUSIC.dom.get('contentFrame').src = 'http://y.qq.com/y/static/s_search/search.html?type=1';setTimeout(function(){top.frames['contentFrame'].g_simpleSearchChn.submit(MUSIC.dom.get('keyword').value.trim());}, 100); }	else {MUSIC.widget.intellMatch.search();}}" x-webkit-speech="" speech="" lang="zh-CN" autocomplete="off"><input type="button" value="搜索" onclick="if (window.frames['contentFrame'].location.href.indexOf('y.qq.com/y/static/s_search/')!=-1) { MUSIC.dom.get('contentFrame').src = 'http://y.qq.com/y/static/s_search/search.html?type=1';setTimeout(function(){top.frames['contentFrame'].g_simpleSearchChn.submit(MUSIC.dom.get('keyword').value.trim());}, 100); }	else {var event=MUSIC.event.getEvent();if(event.keyCode==13){}else MUSIC.widget.intellMatch.curIndex=-1;MUSIC.widget.intellMatch.search();}" id="search_form" class="go_search">
+			<div class="search_result" id="keywords_list">
+				<ul>
+				</ul>
+			</div>
+		</div>
+		<div class="navigation">
+			<ul id="divnavigation">
+				<li class="nav_home"><a href="about:blank" onclick="showIndex(true);" target="contentFrame" class="nonce"><span>音乐馆</span></a></li>
+				<li class="nav_mv"><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_mvout4web.fcg?format=html&amp;tpl=tpl&amp;pgv_ref=qqmusic.y.topmenu" target="contentFrame"><span>MV</span></a></li>
+				<li class="nav_mymusic"><a href="/y/static/mymusic/mymusic_index.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame"><span>我的音乐</span></a></li>
+				<li class="nav_software"><a href="http://y.qq.com/download/index.html?pgv_ref=qqmusic.y.topmenu" target="_blank"><span>下载客户端</span></a></li>			
+			</ul>
+		</div>
+		<div class="sub_navigation" id="divsubmenu">
+			<!--音乐馆-->
+			<p class="sub_lib" style="display: block;">
+			<a href="about:blank" onclick="showIndex(true);" target="contentFrame" class="nonce">首页</a>|
+			<a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?page=index&amp;format=html&amp;tpl=20&amp;pgv_ref=qqmusic.y.topmenu" target="contentFrame">排行榜</a>|
+			<a href="/y/static/taoge/taoge_list.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">歌单广场</a>|
+			<a href="/y/static/radio/index.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">电台</a>|
+			<a href="/y/static/singer/index/all_hot_1.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">歌手</a>|
+			<!--<a  href="y/static/shoufa/index.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">独家首发</a>|-->
+			<a href="/y/static/album/index.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">专辑</a>
+			</p>
+			<p class="sub_mv" style="display: none;"><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_mvout4web.fcg?format=html&amp;tpl=tpl&amp;pgv_ref=qqmusic.y.topmenu" target="contentFrame">MV推荐</a>|<a href="/y/static/mv/mv_toplist.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">MV排行榜</a>|<a href="/y/static/mv/lib.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">MV库</a>|<a href="/y/static/mv/live/1.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">音乐现场</a>|<a href="/y/static/mv/topic/1.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">MV专题</a>|<a href="/y/static/mv/mv_play.html?cid=brh8ox942pb5wwk&amp;pgv_ref=qqmusic.y.topmenu" target="target">巅峰榜盛典</a></p>
+			<!--我的音乐-->
+			<p class="sub_mymusic" style="display: none;"><a href="/y/static/mymusic/mymusic_index.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">主页</a>|<a href="/y/static/mymusic/mymusic_albumlist.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">歌单</a>|<a href="/y/static/mymusic/mymusic_mvlist.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">MV收藏</a>|<a href="/y/static/mymusic/mymusic_follow_listen.html?type=mylisten&amp;pgv_ref=qqmusic.y.topmenu" target="contentFrame">听众</a>|<a href="/y/static/mymusic/mymusic_follow_listen.html?type=singer&amp;pgv_ref=qqmusic.y.topmenu" target="contentFrame">收听</a></p>
+			<!--Qplay-->
+			<p class="sub_qplay" style="display: none;"><a href="http://y.qq.com/y/static/down/qplay.html?pgv_ref=qqmusic.y.topmenu" target="_blank">功能介绍</a>|<a href="/y/static/qplay/qplay_coop.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame" class="nonce">合作厂商</a></p>
+			<!--下载客户端-->
+			<!--p class="sub_software"><a href="/y/static/down/index.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">首页</a>|<a href="/y/static/down/detail.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">下载</a></p-->
+		</div>
+	</div>
+</div>
+<script>
+window.showIndex = function(pgvflag){
+	document.title = 'QQ音乐 - 中国最新最全免费正版高品质音乐平台！';
+	if (!!document.getElementById('index_div'))
+	{
+		document.getElementById('index_div').style.display='block';
+	}
+	document.getElementById('contentFrame').style.display='none';
+	parent.window.location.hash = '';
+	if (!!mids||!!play)
+	parent.window.location.hash = "#type=index"+(!!mids?('&mids='+mids):'')+(!!play?('&play='+play):'');
+		if (typeof(g_reflushTopMenu)!='undefined')
+		{
+			g_reflushTopMenu(["nav_home", "sub_lib","0"]);
+		}
+		if (typeof(g_recomChn)!='undefined')
+		{
+			initRecom();
+		    g_recomChn.showUserInfo();
+		}
+		if (typeof(g_statistics)!='undefined'&&!!g_statistics.doPvg&&!!pgvflag)
+		{
+			g_statistics.initPvJs(function(){
+				g_statistics.doPvg('/y/static/index.html');
+			});
+		}
+}
+window.hideIndex = function(){
+	document.getElementById('contentFrame').style.display='block';
+	document.getElementById('index_div').style.display='none';
+}
+
+</script>
+<div class="main_frame" role="main" id="divmain">
+	<iframe name="contentFrame" id="contentFrame" onload="try{if(!(window.frames['contentFrame'].location.href.indexOf('v8_4web')!=-1||window.frames['contentFrame'].location.href.indexOf('about:blank')!=-1)){hideIndex()}else{showIndex()};}catch(e){}" width="100%" height="1374px" allowtransparency="true" scrolling="no" border="0" frameborder="0" src="about:blank" style="display: none;"></iframe>
+</div>
+    <div class="layout_2" id="index_div" style="display: block;">
+        <div class="main_container">
+            <!--S 焦点图-->
+            <div class="mod_focus_show" id="divimgplay"><a href="javascript:;" class="slide_prev" onclick="g_imgPlayer.prev()">上一个</a><a href="javascript:;" class="slide_next" onclick="g_imgPlayer.next()">下一个</a><ul class="mod_focus_pic" id="divimginfog_imgPlayer"><li style="display: block;"><a href="http://y.qq.com/#type=album&amp;mid=0040lYVF3dZDIV" onclick="g_imgPlayer.stat(1, 77308);" target="_blank"><img src="http://i.gtimg.cn/music/common/product/focus_img/big0220160304195006.jpg?max_age=2592000" alt="中国好歌曲第六期" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/topic/sd05/index.html" onclick="g_imgPlayer.stat(2, 77281);" target="_blank"><img src="http://i.gtimg.cn/music/common/product/focus_img/big0020160303113406.jpg?max_age=2592000" alt="集齐顶级唱作人 可召唤好盛典" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/#type=album&amp;mid=000FGi4443C6mW" onclick="g_imgPlayer.stat(3, 77305);" target="_blank"><img src="http://i.gtimg.cn/music/common/product/focus_img/big0120160304155648.jpg?max_age=2592000" alt="李胜基《Meet Someone Like Me》" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/#type=album&amp;mid=000OaoZ54M16rh" onclick="g_imgPlayer.stat(4, 77306);" target="_blank"><img src="http://i.gtimg.cn/music/common/product/focus_img/big0320160304155708.jpg?max_age=2592000" alt="智珉&amp;秀珉《CALL YOU BAE》" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/#type=taoge&amp;id=3203224506" onclick="g_imgPlayer.stat(5, 77285);" target="_blank"><img src="http://i.gtimg.cn/music/common/product/focus_img/big0520160301212947.jpg?max_age=2592000" alt="大话好歌曲：送你一张国际范儿专辑要不要？" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=nkp1ywc6urxl9ye" onclick="g_imgPlayer.stat(6, 77283);" target="_blank"><img src="http://i.gtimg.cn/music/common/product/focus_img/big0220160302200330.jpg?max_age=2592000" alt="巅峰榜：听音乐不如看音乐" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/topic/bigbang2016tour/index.html" onclick="g_imgPlayer.stat(7, 77304);" target="_blank"><img src="http://i.gtimg.cn/music/common/product/focus_img/big0620160303195329.jpg?max_age=2592000" alt="BIGBANG演唱会" width="700" height="320"></a></li><li style="display: none;"><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_mvout4web.fcg?cmd=1&amp;format=html&amp;tpl=mvplay&amp;vid=w0019i0zqki" onclick="g_imgPlayer.stat(8, 77287);" target="_blank"><img src="http://i.gtimg.cn/music/common/product/focus_img/big0020160226140800.jpg?max_age=2592000" alt="2016QQ音乐巅峰盛典预告片" width="700" height="320"></a></li><li style="display: none;"><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_mvout4web.fcg?cmd=1&amp;format=html&amp;tpl=mvplay&amp;vid=y0016j8h85w" onclick="g_imgPlayer.stat(9, 77288);" target="_blank"><img src="http://i.gtimg.cn/music/common/product/focus_img/big0820160225234721.jpg?max_age=2592000" alt="2015QQ音乐年度盛典" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/vip/vipmonkey/index.html" onclick="g_imgPlayer.stat(10, 77303);" target="_blank"><img src="http://i.gtimg.cn/music/common/product/focus_img/big0920160303195305.jpg?max_age=2592000" alt="2016绿钻春节活动" width="700" height="320"></a></li></ul><div class="focus_switch" id="divpageinfog_imgPlayer"><a href="javascript:;" onmouseover="g_imgPlayer.play(0);return false;" onclick="g_imgPlayer.play(0);" class="current">0</a><a href="javascript:;" onmouseover="g_imgPlayer.play(1);return false;" onclick="g_imgPlayer.play(1);" class="">1</a><a href="javascript:;" onmouseover="g_imgPlayer.play(2);return false;" onclick="g_imgPlayer.play(2);" class="">2</a><a href="javascript:;" onmouseover="g_imgPlayer.play(3);return false;" onclick="g_imgPlayer.play(3);" class="">3</a><a href="javascript:;" onmouseover="g_imgPlayer.play(4);return false;" onclick="g_imgPlayer.play(4);" class="">4</a><a href="javascript:;" onmouseover="g_imgPlayer.play(5);return false;" onclick="g_imgPlayer.play(5);" class="">5</a><a href="javascript:;" onmouseover="g_imgPlayer.play(6);return false;" onclick="g_imgPlayer.play(6);" class="">6</a><a href="javascript:;" onmouseover="g_imgPlayer.play(7);return false;" onclick="g_imgPlayer.play(7);" class="">7</a><a href="javascript:;" onmouseover="g_imgPlayer.play(8);return false;" onclick="g_imgPlayer.play(8);" class="">8</a><a href="javascript:;" onmouseover="g_imgPlayer.play(9);return false;" onclick="g_imgPlayer.play(9);" class="">9</a></div></div>
+            <!--E 焦点图-->
+            <!--S 在线首发-->
+            <div class="mod_first">
+                <div class="title"><h2>在线首发</h2></div>
+                <div class="mod_more"><a target="contentFrame" href="http://y.qq.com/y/static/shoufa/index.html?pgv_ref=qqmusic.y.index.music.more" class="mod_more_link" title="更多">更多</a></div>
+                <div class="mod_cp" id="divalbumtag">
+                    <a href="javascript:;" class="cp_prev_disabled" title="上一页"></a>
+                    <a href="javascript:;" name="script_btn" class="cp_next" title="下一页"></a>
+                </div>
+                <div class="mod_content">
+                    <div class="slide_content">
+                        <ul class="mod_first_list" id="divalbumlist">
+							
+                            <li>
+                                <a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_detail_cp.fcg?tpl=20&amp;albummid=001vzaZl36iFwn&amp;pgv_ref=qqmusic.y.index.music.pic1" class="mod_poster_130" title="中国好歌曲第三季 第5期">
+                                    <img width="130" height="130" alt="中国好歌曲第三季 第5期" title="中国好歌曲第三季 第5期" src="http://i.gtimg.cn/music/photo/mid_album_150/w/n/001vzaZl36iFwn.jpg?max_age=2592000">
+                                    <span class="icon_play" onclick="g_trackServ.playAlbum('001vzaZl36iFwn', 'music.play1');" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'" title="播放"></span>
+                                    <span class="shadow"></span>
+                                    <strong class="album_name" title="中国好歌曲第三季 第5期">中国好歌曲第三季 第5期</strong>
+				    
+						
+						
+						<strong class="album_singer" title="中国好歌曲"> 中国好歌曲 </strong>
+						
+					
+                                    
+                                </a>
+                            </li>
+							
+                            <li>
+                                <a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_detail_cp.fcg?tpl=20&amp;albummid=002IUczG0d4Mj4&amp;pgv_ref=qqmusic.y.index.music.pic1" class="mod_poster_130" title="Chopin: Ballades, Berceuse, Mazurkas">
+                                    <img width="130" height="130" alt="Chopin: Ballades, Berceuse, Mazurkas" title="Chopin: Ballades, Berceuse, Mazurkas" src="http://i.gtimg.cn/music/photo/mid_album_150/j/4/002IUczG0d4Mj4.jpg?max_age=2592000">
+                                    <span class="icon_play" onclick="g_trackServ.playAlbum('002IUczG0d4Mj4', 'music.play1');" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'" title="播放"></span>
+                                    <span class="shadow"></span>
+                                    <strong class="album_name" title="Chopin: Ballades, Berceuse, Mazurkas">Chopin: Ballades, Berceuse, Mazurkas</strong>
+				    
+						
+						
+						<strong class="album_singer" title="李云迪"> 李云迪 </strong>
+						
+					
+                                    
+                                </a>
+                            </li>
+							
+                            <li>
+                                <a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_detail_cp.fcg?tpl=20&amp;albummid=002ONdIz1VaBjh&amp;pgv_ref=qqmusic.y.index.music.pic1" class="mod_poster_130" title="REFRESH">
+                                    <img width="130" height="130" alt="REFRESH" title="REFRESH" src="http://i.gtimg.cn/music/photo/mid_album_150/j/h/002ONdIz1VaBjh.jpg?max_age=2592000">
+                                    <span class="icon_play" onclick="g_trackServ.playAlbum('002ONdIz1VaBjh', 'music.play1');" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'" title="播放"></span>
+                                    <span class="shadow"></span>
+                                    <strong class="album_name" title="REFRESH">REFRESH</strong>
+				    
+						
+						
+						<strong class="album_singer" title="CLC"> CLC </strong>
+						
+					
+                                    
+                                </a>
+                            </li>
+							
+                            <li>
+                                <a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_detail_cp.fcg?tpl=20&amp;albummid=002SIXou1R3joo&amp;pgv_ref=qqmusic.y.index.music.pic1" class="mod_poster_130" title="투유 프로젝트 - 슈가맨 Part.20">
+                                    <img width="130" height="130" alt="투유 프로젝트 - 슈가맨 Part.20" title="투유 프로젝트 - 슈가맨 Part.20" src="http://i.gtimg.cn/music/photo/mid_album_150/o/o/002SIXou1R3joo.jpg?max_age=2592000">
+                                    <span class="icon_play" onclick="g_trackServ.playAlbum('002SIXou1R3joo', 'music.play1');" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'" title="播放"></span>
+                                    <span class="shadow"></span>
+                                    <strong class="album_name" title="투유 프로젝트 - 슈가맨 Part.20">투유 프로젝트 - 슈가맨 Part.20</strong>
+				    
+						
+						
+						<strong class="album_singer" title="투유 프로젝트 - 슈가맨"> 투유 프로젝트 - 슈가맨 </strong>
+						
+					
+                                    
+                                </a>
+                            </li>
+							
+                            <li>
+                                <a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_detail_cp.fcg?tpl=20&amp;albummid=0047xEwJ17lFKb&amp;pgv_ref=qqmusic.y.index.music.pic1" class="mod_poster_130" title="四格">
+                                    <img width="130" height="130" alt="四格" title="四格" src="http://i.gtimg.cn/music/photo/mid_album_150/K/b/0047xEwJ17lFKb.jpg?max_age=2592000">
+                                    <span class="icon_play" onclick="g_trackServ.playAlbum('0047xEwJ17lFKb', 'music.play1');" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'" title="播放"></span>
+                                    <span class="shadow"></span>
+                                    <strong class="album_name" title="四格">四格</strong>
+				    
+						
+						
+						<strong class="album_singer" title="李嘉格"> 李嘉格 </strong>
+						
+					
+                                    
+                                </a>
+                            </li>
+							
+                            <li>
+                                <a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_detail_cp.fcg?tpl=20&amp;albummid=002pZnoY2sxP0S&amp;pgv_ref=qqmusic.y.index.music.pic1" class="mod_poster_130" title="野生天空">
+                                    <img width="130" height="130" alt="野生天空" title="野生天空" src="http://i.gtimg.cn/music/photo/mid_album_150/0/S/002pZnoY2sxP0S.jpg?max_age=2592000">
+                                    <span class="icon_play" onclick="g_trackServ.playAlbum('002pZnoY2sxP0S', 'music.play1');" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'" title="播放"></span>
+                                    <span class="shadow"></span>
+                                    <strong class="album_name" title="野生天空">野生天空</strong>
+				    
+						
+						
+						<strong class="album_singer" title="陈萝莉"> 陈萝莉 </strong>
+						
+					
+                                    
+                                </a>
+                            </li>
+							
+                            <li>
+                                <a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_detail_cp.fcg?tpl=20&amp;albummid=002Edpgx2yorFV&amp;pgv_ref=qqmusic.y.index.music.pic1" class="mod_poster_130" title="谢谢你">
+                                    <img width="130" height="130" alt="谢谢你" title="谢谢你" src="http://i.gtimg.cn/music/photo/mid_album_150/F/V/002Edpgx2yorFV.jpg?max_age=2592000">
+                                    <span class="icon_play" onclick="g_trackServ.playAlbum('002Edpgx2yorFV', 'music.play1');" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'" title="播放"></span>
+                                    <span class="shadow"></span>
+                                    <strong class="album_name" title="谢谢你">谢谢你</strong>
+				    
+						
+						
+						<strong class="album_singer" title="李代沫"> 李代沫 </strong>
+						
+					
+                                    
+                                </a>
+                            </li>
+							
+                            <li>
+                                <a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_detail_cp.fcg?tpl=20&amp;albummid=001spfTP1YOqQn&amp;pgv_ref=qqmusic.y.index.music.pic1" class="mod_poster_130" title="国民美少女 第7期">
+                                    <img width="130" height="130" alt="国民美少女 第7期" title="国民美少女 第7期" src="http://i.gtimg.cn/music/photo/mid_album_150/Q/n/001spfTP1YOqQn.jpg?max_age=2592000">
+                                    <span class="icon_play" onclick="g_trackServ.playAlbum('001spfTP1YOqQn', 'music.play1');" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'" title="播放"></span>
+                                    <span class="shadow"></span>
+                                    <strong class="album_name" title="国民美少女 第7期">国民美少女 第7期</strong>
+				    
+						
+						
+						<strong class="album_singer" title="国民美少女"> 国民美少女 </strong>
+						
+					
+                                    
+                                </a>
+                            </li>
+							
+                            <li>
+                                <a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_detail_cp.fcg?tpl=20&amp;albummid=001oTlyJ2SW9tA&amp;pgv_ref=qqmusic.y.index.music.pic1" class="mod_poster_130" title="诗歌之王 第十一期">
+                                    <img width="130" height="130" alt="诗歌之王 第十一期" title="诗歌之王 第十一期" src="http://i.gtimg.cn/music/photo/mid_album_150/t/A/001oTlyJ2SW9tA.jpg?max_age=2592000">
+                                    <span class="icon_play" onclick="g_trackServ.playAlbum('001oTlyJ2SW9tA', 'music.play1');" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'" title="播放"></span>
+                                    <span class="shadow"></span>
+                                    <strong class="album_name" title="诗歌之王 第十一期">诗歌之王 第十一期</strong>
+				    
+						
+						
+						<strong class="album_singer" title="诗歌之王"> 诗歌之王 </strong>
+						
+					
+                                    
+                                </a>
+                            </li>
+							
+                            <li>
+                                <a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_detail_cp.fcg?tpl=20&amp;albummid=002BakFH06H3S0&amp;pgv_ref=qqmusic.y.index.music.pic1" class="mod_poster_130" title="哈利路亚">
+                                    <img width="130" height="130" alt="哈利路亚" title="哈利路亚" src="http://i.gtimg.cn/music/photo/mid_album_150/S/0/002BakFH06H3S0.jpg?max_age=2592000">
+                                    <span class="icon_play" onclick="g_trackServ.playAlbum('002BakFH06H3S0', 'music.play1');" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'" title="播放"></span>
+                                    <span class="shadow"></span>
+                                    <strong class="album_name" title="哈利路亚">哈利路亚</strong>
+				    
+						
+						
+						<strong class="album_singer" title="蔡琴"> 蔡琴 </strong>
+						
+					
+                                    
+                                </a>
+                            </li>
+							
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--E 在线首发-->
+            <!--S MV首播-->
+            <div class="mod_mv">
+                <div class="title"><h2>MV首播</h2></div>
+                <div class="mod_more"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_mvout4web.fcg?format=html&amp;tpl=tpl&amp;pgv_ref=qqmusic.y.index.mv.more" class="mod_more_link" title="更多">更多</a></div>
+                <div class="mod_content">
+                    <div class="slide_content">
+                        <ul class="mod_mv_list">
+							
+							<li>
+                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="流行歌曲">
+                                    <img alt="流行歌曲" title="流行歌曲" src="http://i.gtimg.cn/music/common//upload/uploadt_y_mv_conf/1457091882530267030.jpg?max_age=2592000">
+                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+								
+									<span class="icon_today"></span>
+								
+                                </a>
+                                <p>
+					<a href="javascript:;" name="script_btn" class="mv_name" title="流行歌曲">流行歌曲</a>
+					<span> - </span>
+					
+						
+						
+						<a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=000aHmbL2aPXWH" class="singer_name" title="李荣浩"> 李荣浩 </a>
+						
+					
+				</p>
+								<p>李荣浩精心谱写年少青涩的情爱</p>
+                                <p><span class="date">2016-03-04</span></p>
+                            </li>
+							
+							<li>
+                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="Desire">
+                                    <img alt="Desire" title="Desire" src="http://i.gtimg.cn/music/common//upload/uploadt_y_mv_conf/1457078733676267030.jpg?max_age=2592000">
+                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+								
+                                </a>
+                                <p>
+					<a href="javascript:;" name="script_btn" class="mv_name" title="Desire">Desire</a>
+					<span> - </span>
+					
+						
+						
+						<a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=000ebEtF1Xzw9T" class="singer_name" title="Years &amp; Years"> Years &amp; Years </a>
+						
+						/
+						<a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=002lOe3K3G9oqe" class="singer_name" title="Tove Lo"> Tove Lo </a>
+						
+					
+				</p>
+								<p>捂脸！这简直太劲爆了</p>
+                                <p><span class="date">2016-03-03</span></p>
+                            </li>
+							
+							<li>
+                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="Try Everything">
+                                    <img alt="Try Everything" title="Try Everything" src="http://i.gtimg.cn/music/common//upload/uploadt_y_mv_conf/1457072964074267030.jpg?max_age=2592000">
+                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+								
+                                </a>
+                                <p>
+					<a href="javascript:;" name="script_btn" class="mv_name" title="Try Everything">Try Everything</a>
+					<span> - </span>
+					
+						
+						
+						<a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=003IpJo44NX2AE" class="singer_name" title="Shakira"> Shakira </a>
+						
+					
+				</p>
+								<p>狼姐出镜简直超哈皮</p>
+                                <p><span class="date">2016-03-03</span></p>
+                            </li>
+							
+							<li>
+                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="Rims">
+                                    <img alt="Rims" title="Rims" src="http://i.gtimg.cn/music/common//upload/uploadt_y_mv_conf/1457068828913267100.jpg?max_age=2592000">
+                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+								
+									<span class="icon_today"></span>
+								
+                                </a>
+                                <p>
+					<a href="javascript:;" name="script_btn" class="mv_name" title="Rims">Rims</a>
+					<span> - </span>
+					
+						
+						
+						<a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=0039FsJP17qr7T" class="singer_name" title="欧豪"> 欧豪 </a>
+						
+					
+				</p>
+								<p>分饰两角开启撩妹模式</p>
+                                <p><span class="date">2016-03-04</span></p>
+                            </li>
+							
+							<li>
+                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="もっと">
+                                    <img alt="もっと" title="もっと" src="http://i.gtimg.cn/music/common//upload/uploadt_y_mv_conf/1457062399559091590.jpg?max_age=2592000">
+                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+								
+									<span class="icon_today"></span>
+								
+                                </a>
+                                <p>
+					<a href="javascript:;" name="script_btn" class="mv_name" title="もっと">もっと</a>
+					<span> - </span>
+					
+						
+						
+						<a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=0020mcjz1pIRWs" class="singer_name" title="Aiko"> Aiko </a>
+						
+					
+				</p>
+								<p>清新画风系列好美萌</p>
+                                <p><span class="date">2016-03-04</span></p>
+                            </li>
+							
+							<li>
+                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="넌 is 뭔들 (0.5 X 2 Ver.)">
+                                    <img alt="넌 is 뭔들 (0.5 X 2 Ver.)" title="넌 is 뭔들 (0.5 X 2 Ver.)" src="http://i.gtimg.cn/music/common//upload/uploadt_y_mv_conf/1457057441379092060.jpg?max_age=2592000">
+                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+								
+                                </a>
+                                <p>
+					<a href="javascript:;" name="script_btn" class="mv_name" title="넌 is 뭔들 (0.5 X 2 Ver.)">넌 is 뭔들 (0.5 X 2 Ver.)</a>
+					<span> - </span>
+					
+						
+						
+						<a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=001p5MSX07YGwi" class="singer_name" title="MAMAMOO"> MAMAMOO </a>
+						
+					
+				</p>
+								<p>有趣！欧尼们太会玩了</p>
+                                <p><span class="date">2016-03-03</span></p>
+                            </li>
+							
+							<li>
+                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="Bad Boys">
+                                    <img alt="Bad Boys" title="Bad Boys" src="http://i.gtimg.cn/music/common//upload/uploadt_y_mv_conf/1457054836937092060.jpg?max_age=2592000">
+                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+								
+                                </a>
+                                <p>
+					<a href="javascript:;" name="script_btn" class="mv_name" title="Bad Boys">Bad Boys</a>
+					<span> - </span>
+					
+						
+						
+						<a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=004W8Hcu4COfQV" class="singer_name" title="Inna"> Inna </a>
+						
+					
+				</p>
+								<p>玩个滑板也能介么性感</p>
+                                <p><span class="date">2016-03-03</span></p>
+                            </li>
+							
+							<li>
+                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="그런 사람">
+                                    <img alt="그런 사람" title="그런 사람" src="http://i.gtimg.cn/music/common//upload/uploadt_y_mv_conf/1456996371249084840.jpg?max_age=2592000">
+                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+								
+                                </a>
+                                <p>
+					<a href="javascript:;" name="script_btn" class="mv_name" title="그런 사람">그런 사람</a>
+					<span> - </span>
+					
+						
+						
+						<a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=002ZxUMf000Nu9" class="singer_name" title="이승기"> 이승기 </a>
+						
+					
+				</p>
+								<p>李昇基入伍前温暖制作</p>
+                                <p><span class="date">2016-03-02</span></p>
+                            </li>
+							
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--E MV首播-->
+            <!--S 官方推荐-->
+            <div class="mod_recommend">
+                <div class="mod_recommend_1">
+                    <div class="title"><h2>新歌推荐</h2></div>
+                    <div class="mod_t_play"><a href="javascript:;" name="script_btn" class="mod_play" title="播放">播放</a><a href="javascript:;" name="script_btn" class="mod_add" title="添加">添加</a></div>
+                    <ul class="mod_sort_index" id="divsongtag"><li class="first current"> <a href="javascript:;" onclick="g_recomChn.showSongTab('zx');pgvClickStat('index.Rankingn.tab1');" class="">华语</a> </li><li> <a href="javascript:;" onclick="g_recomChn.showSongTab('k');pgvClickStat('index.Rankingn.tab2');" class="">韩语</a> </li><li class="last"> <a href="javascript:;" onclick="g_recomChn.showSongTab('eu');pgvClickStat('index.Rankingn.tab3');" class="">欧美</a> </li></ul>
+                    <div class="mod_content class_songlist">
+                        <ol class="recommend_list" id="divsonglist1"><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true" class=""><script type="text/data" class="data">{"albumid":1289691,"albummid":"000dQETN4a7Z2R","albumname":"心跳","alertid":11,"belongCD":1,"cdIdx":0,"interval":241,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":0,"tryend":0,"trysize":0},"rate":31,"singer":[{"id":3954,"mid":"001z2JmX09LLgL","name":"汪苏泷"}],"size128":3869238,"size320":9672810,"size5_1":0,"sizeape":27362291,"sizeflac":27334208,"sizeogg":5555712,"songid":105632966,"songmid":"003sAOS340xfXZ","songname":"心跳 (《女汉子真爱公式》电影主题曲)","songtype":0,"strMediaMid":"003sAOS340xfXZ","stream":1,"switch":79635,"type":0,"vid":"","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"04:01","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>0</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=003sAOS340xfXZ&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music1');" title="心跳 (《女汉子真爱公式》电影主题曲)">心跳 (《女汉子真爱公式》电影主题曲)</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=001z2JmX09LLgL" target="contentFrame" title="汪苏泷">汪苏泷</a></span></h5><span class="count " style="display: inline-block;"></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon1">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon1">添加</a><a href="javascript:;" mid="003sAOS340xfXZ" title="喜欢" class="btn_like" stat="Rankingn.icon1">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon1">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon1">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1287684,"albummid":"001XeLXh1XaZ0b","albumname":"他比我更适合","alertid":11,"belongCD":1,"cdIdx":0,"interval":264,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":76449,"tryend":117438,"trysize":657030},"rate":31,"singer":[{"id":24833,"mid":"002mze3U0NYXOM","name":"胡夏"}],"size128":4227443,"size320":10568302,"size5_1":0,"sizeape":30105642,"sizeflac":30077485,"sizeogg":6197573,"songid":105618328,"songmid":"003h2b7B3Qtr5R","songname":"他比我更适合 (《因为爱情有幸福》电视剧主题曲)","songtype":0,"strMediaMid":"003h2b7B3Qtr5R","stream":4,"switch":79635,"type":0,"vid":"","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"04:24","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>1</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=003h2b7B3Qtr5R&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music2');" title="他比我更适合 (《因为爱情有幸福》电视剧主题曲)">他比我更适合 (《因为爱情有幸福》电视剧主题曲)</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=002mze3U0NYXOM" target="contentFrame" title="胡夏">胡夏</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon2">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon2">添加</a><a href="javascript:;" mid="003h2b7B3Qtr5R" title="喜欢" class="btn_like" stat="Rankingn.icon2">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon2">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon2">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1284623,"albummid":"003zglha47p1I5","albumname":"真心话太冒险","alertid":11,"belongCD":1,"cdIdx":0,"interval":220,"isonly":1,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":43231,"tryend":74648,"trysize":503639},"rate":31,"singer":[{"id":34412,"mid":"000zmpju02bEBm","name":"TFBOYS"}],"size128":3533221,"size320":8832325,"size5_1":0,"sizeape":26996444,"sizeflac":27177225,"sizeogg":5383241,"songid":105593336,"songmid":"001Gv41R2uQoYf","songname":"真心话太冒险","songtype":0,"strMediaMid":"001Gv41R2uQoYf","stream":3,"switch":79635,"type":0,"vid":"","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"03:40","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>2</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=001Gv41R2uQoYf&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music3');" title="真心话太冒险">真心话太冒险</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=000zmpju02bEBm" target="contentFrame" title="TFBOYS">TFBOYS</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon3">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon3">添加</a><a href="javascript:;" mid="001Gv41R2uQoYf" title="喜欢" class="btn_like" stat="Rankingn.icon3">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon3">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon3">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1280889,"albummid":"003btbWd24RwuG","albumname":"Reloaded  （重启  ）","alertid":100007,"belongCD":1,"cdIdx":0,"interval":233,"isonly":0,"msgid":13,"pay":{"payalbum":1,"payalbumprice":500,"paydownload":1,"payinfo":1,"payplay":1,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":49617,"tryend":98555,"trysize":784090},"rate":31,"singer":[{"id":204664,"mid":"001SqkF53OEhdO","name":"鹿晗"}],"size128":3736371,"size320":9340577,"size5_1":0,"sizeape":26081509,"sizeflac":26010636,"sizeogg":5161776,"songid":105565263,"songmid":"0019cY7g1uDiOv","songname":"封印（Excited）","songtype":0,"strMediaMid":"0019cY7g1uDiOv","stream":9,"switch":69633,"type":0,"vid":"c0019hsiij4","action":{"play_lq":0,"play_hq":0,"play_sq":0,"down_lq":0,"down_hq":0,"down_sq":0,"soso":0,"fav":0,"share":0,"bgm":0,"ring":0,"sing":1,"radio":0,"try":0,"give":0,"play":0},"time":"03:53","tryPlay":0,"anyPlay":0,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>3</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=0019cY7g1uDiOv&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music4');" title="封印（Excited）">封印（Excited）</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=001SqkF53OEhdO" target="contentFrame" title="鹿晗">鹿晗</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon4">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon4">添加</a><a href="javascript:;" title="暂不提供此歌曲服务" class="btn_like_n">喜欢</a><a href="javascript:;" title="暂不提供此歌曲服务" class="btn_fav_n">收藏到歌单</a><a href="javascript:;" title="暂不提供此歌曲服务" class="btn_share_n">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1282103,"albummid":"0035uvnA1xeJhR","albumname":"燕归巢","alertid":11,"belongCD":1,"cdIdx":0,"interval":294,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":90741,"tryend":118700,"trysize":448469},"rate":31,"singer":[{"id":7221,"mid":"000CK5xN3yZDJt","name":"许嵩"}],"size128":4715189,"size320":11787686,"size5_1":0,"sizeape":30927908,"sizeflac":31173987,"sizeogg":6519569,"songid":105575471,"songmid":"000Nz08A0aZNuz","songname":"燕归巢","songtype":0,"strMediaMid":"000Nz08A0aZNuz","stream":3,"switch":79635,"type":0,"vid":"","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"04:54","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>4</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=000Nz08A0aZNuz&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music5');" title="燕归巢">燕归巢</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=000CK5xN3yZDJt" target="contentFrame" title="许嵩">许嵩</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon5">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon5">添加</a><a href="javascript:;" mid="000Nz08A0aZNuz" title="喜欢" class="btn_like" stat="Rankingn.icon5">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon5">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon5">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1281682,"albummid":"000jIx0H3Z4XtG","albumname":"我好得闲","alertid":100002,"belongCD":1,"cdIdx":0,"interval":183,"isonly":1,"msgid":14,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":1,"payinfo":1,"payplay":0,"paytrackmouth":1,"paytrackprice":200,"timefree":0},"preview":{"trybegin":34360,"tryend":50019,"trysize":251610},"rate":31,"singer":[{"id":118,"mid":"001uXFgt1kpLyI","name":"容祖儿"}],"size128":2938869,"size320":7346875,"size5_1":0,"sizeape":22619387,"sizeflac":22803412,"sizeogg":4700500,"songid":105571981,"songmid":"003KB29p306wWe","songname":"我好得闲","songtype":0,"strMediaMid":"003KB29p306wWe","stream":2,"switch":112387,"type":0,"vid":"v0019tzcnbc","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":0,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":1,"play":1},"time":"03:03","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>5</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=003KB29p306wWe&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music6');" title="我好得闲">我好得闲</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=001uXFgt1kpLyI" target="contentFrame" title="容祖儿">容祖儿</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon6">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon6">添加</a><a href="javascript:;" mid="003KB29p306wWe" title="喜欢" class="btn_like" stat="Rankingn.icon6">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon6">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon6">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1280820,"albummid":"001gTpEw2cwqBx","albumname":"Show Me","alertid":100002,"belongCD":1,"cdIdx":0,"interval":188,"isonly":1,"msgid":14,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":1,"payinfo":1,"payplay":0,"paytrackmouth":1,"paytrackprice":200,"timefree":0},"preview":{"trybegin":37186,"tryend":60175,"trysize":369057},"rate":31,"singer":[{"id":12196,"mid":"0028iJ7f3Tjl97","name":"林峯"}],"size128":3018291,"size320":7545416,"size5_1":0,"sizeape":23206446,"sizeflac":23374494,"sizeogg":4553580,"songid":105568312,"songmid":"004IDzYz0zHEJU","songname":"Show Me","songtype":0,"strMediaMid":"004IDzYz0zHEJU","stream":10,"switch":112387,"type":0,"vid":"a0019tssd0n","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":0,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":1,"play":1},"time":"03:08","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>6</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=004IDzYz0zHEJU&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music7');" title="Show Me">Show Me</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=0028iJ7f3Tjl97" target="contentFrame" title="林峯">林峯</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon7">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon7">添加</a><a href="javascript:;" mid="004IDzYz0zHEJU" title="喜欢" class="btn_like" stat="Rankingn.icon7">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon7">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon7">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1280509,"albummid":"002R8S7Q2YFsAg","albumname":"白日梦想家 II","alertid":100007,"belongCD":1,"cdIdx":0,"interval":252,"isonly":1,"msgid":13,"pay":{"payalbum":1,"payalbumprice":500,"paydownload":1,"payinfo":1,"payplay":1,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":77286,"tryend":107846,"trysize":489847},"rate":31,"singer":[{"id":11453,"mid":"004DTQXp0cNXeG","name":"魏晨"}],"size128":4041029,"size320":10102273,"size5_1":0,"sizeape":28129550,"sizeflac":28292601,"sizeogg":5423956,"songid":105562040,"songmid":"0038CtVY0CxUO0","songname":"示弱","songtype":0,"strMediaMid":"0038CtVY0CxUO0","stream":9,"switch":69633,"type":0,"vid":"","action":{"play_lq":0,"play_hq":0,"play_sq":0,"down_lq":0,"down_hq":0,"down_sq":0,"soso":0,"fav":0,"share":0,"bgm":0,"ring":0,"sing":1,"radio":0,"try":0,"give":0,"play":0},"time":"04:12","tryPlay":0,"anyPlay":0,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>7</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=0038CtVY0CxUO0&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music8');" title="示弱">示弱</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=004DTQXp0cNXeG" target="contentFrame" title="魏晨">魏晨</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon8">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon8">添加</a><a href="javascript:;" title="暂不提供此歌曲服务" class="btn_like_n">喜欢</a><a href="javascript:;" title="暂不提供此歌曲服务" class="btn_fav_n">收藏到歌单</a><a href="javascript:;" title="暂不提供此歌曲服务" class="btn_share_n">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1278780,"albummid":"003crUxn1pCs6S","albumname":"深圳湾","alertid":2,"belongCD":1,"cdIdx":0,"interval":298,"isonly":1,"msgid":14,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":1,"payinfo":1,"payplay":0,"paytrackmouth":1,"paytrackprice":200,"timefree":0},"preview":{"trybegin":0,"tryend":0,"trysize":0},"rate":31,"singer":[{"id":6858,"mid":"003j29af4avl2U","name":"杨嘉松"}],"size128":4772452,"size320":11930839,"size5_1":0,"sizeape":30727419,"sizeflac":31075386,"sizeogg":6517461,"songid":105547552,"songmid":"003eFaNA1pNbxH","songname":"深圳湾","songtype":0,"strMediaMid":"003eFaNA1pNbxH","stream":10,"switch":112387,"type":0,"vid":"g0019yfs0yh","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":0,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":1,"play":1},"time":"04:58","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>8</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=003eFaNA1pNbxH&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music9');" title="深圳湾">深圳湾</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=003j29af4avl2U" target="contentFrame" title="杨嘉松">杨嘉松</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon9">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon9">添加</a><a href="javascript:;" mid="003eFaNA1pNbxH" title="喜欢" class="btn_like" stat="Rankingn.icon9">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon9">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon9">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1276189,"albummid":"001fi1zG0EjU2u","albumname":"有理想","alertid":100002,"belongCD":3,"cdIdx":0,"interval":228,"isonly":1,"msgid":14,"pay":{"payalbum":1,"payalbumprice":1500,"paydownload":1,"payinfo":1,"payplay":1,"paytrackmouth":1,"paytrackprice":200,"timefree":0},"preview":{"trybegin":65740,"tryend":81527,"trysize":253700},"rate":31,"singer":[{"id":60505,"mid":"000aHmbL2aPXWH","name":"李荣浩"}],"size128":3660680,"size320":9151410,"size5_1":0,"sizeape":28267871,"sizeflac":28365992,"sizeogg":5464876,"songid":105526948,"songmid":"002EgEwY30Wf2t","songname":"有理想","songtype":0,"strMediaMid":"002EgEwY30Wf2t","stream":9,"switch":112387,"type":0,"vid":"a0019yjawn2","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":0,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":1,"play":1},"time":"03:48","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>9</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=002EgEwY30Wf2t&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music10');" title="有理想">有理想</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=000aHmbL2aPXWH" target="contentFrame" title="李荣浩">李荣浩</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon10">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon10">添加</a><a href="javascript:;" mid="002EgEwY30Wf2t" title="喜欢" class="btn_like" stat="Rankingn.icon10">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon10">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon10">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1276347,"albummid":"001Hk9X54Fn8WH","albumname":"寻找爱的冒险 电视剧原声带","alertid":11,"belongCD":2,"cdIdx":0,"interval":229,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":57316,"tryend":85635,"trysize":454320},"rate":31,"singer":[{"id":22926,"mid":"004EyqQS2hMS6V","name":"陈翔"}],"size128":3676581,"size320":9191134,"size5_1":0,"sizeape":24123296,"sizeflac":24182710,"sizeogg":5069132,"songid":105526932,"songmid":"0045nFei0KrZZe","songname":"到不了 (《寻找爱的冒险》电视剧插曲)","songtype":0,"strMediaMid":"0045nFei0KrZZe","stream":7,"switch":79635,"type":0,"vid":"t00197h8j1q","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"03:49","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>10</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=0045nFei0KrZZe&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music11');" title="到不了 (《寻找爱的冒险》电视剧插曲)">到不了 (《寻找爱的冒险》电视剧插曲)</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=004EyqQS2hMS6V" target="contentFrame" title="陈翔">陈翔</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon11">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon11">添加</a><a href="javascript:;" mid="0045nFei0KrZZe" title="喜欢" class="btn_like" stat="Rankingn.icon11">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon11">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon11">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1276273,"albummid":"003gioeE0R5RXV","albumname":"一起奔放","alertid":11,"belongCD":1,"cdIdx":0,"interval":256,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":98651,"tryend":135431,"trysize":589321},"rate":31,"singer":[{"id":138,"mid":"0019iLuN2glWFi","name":"孙楠"}],"size128":4103301,"size320":10257959,"size5_1":0,"sizeape":28047666,"sizeflac":28013475,"sizeogg":5747018,"songid":105527711,"songmid":"0023uIfY0Y6IOi","songname":"一起奔放 (《青蛙王国之冰冻大冒险》动画电影主题曲)","songtype":0,"strMediaMid":"0023uIfY0Y6IOi","stream":3,"switch":75539,"type":0,"vid":"s0181selhfs","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":0,"radio":1,"try":0,"give":0,"play":1},"time":"04:16","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>11</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=0023uIfY0Y6IOi&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music12');" title="一起奔放 (《青蛙王国之冰冻大冒险》动画电影主题曲)">一起奔放 (《青蛙王国之冰冻大冒险》动画电影主题曲)</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=0019iLuN2glWFi" target="contentFrame" title="孙楠">孙楠</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon12">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon12">添加</a><a href="javascript:;" mid="0023uIfY0Y6IOi" title="喜欢" class="btn_like" stat="Rankingn.icon12">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon12">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon12">分享</a></div></li></ol>
+                    </div>
+                </div>
+                <div class="mod_recommend_2">
+					<!-- a name="btnlazyload" _func="g_trackServ.getSongsCount('divsonglist2', 'span');"></a -->
+                    <div class="title"><h2>热歌推荐</h2></div>
+                    <div class="mod_t_play"><a href="javascript:;" name="script_btn" class="mod_play" title="播放">播放</a><a href="javascript:;" name="script_btn" class="mod_add" title="添加">添加</a></div>
+                    <div class="mod_content class_songlist">
+                        <ol class="recommend_list" id="divsonglist2"><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true" class=""><script type="text/data" class="data">{"albumid":1267526,"albummid":"001uMCZE0lJIWr","albumname":"不完美小孩","alertid":11,"belongCD":1,"cdIdx":0,"interval":260,"isonly":1,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":69146,"tryend":102435,"trysize":533732},"rate":31,"singer":[{"id":34412,"mid":"000zmpju02bEBm","name":"TFBOYS"}],"size128":4164753,"size320":10411571,"size5_1":0,"sizeape":28439050,"sizeflac":28600512,"sizeogg":5838481,"songid":105461543,"songmid":"003vHYQf1XqU7V","songname":"不完美小孩","songtype":0,"strMediaMid":"003vHYQf1XqU7V","stream":6,"switch":79635,"type":0,"vid":"","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"04:20","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>0</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=003vHYQf1XqU7V&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music');" title="不完美小孩">不完美小孩</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=000zmpju02bEBm" target="contentFrame" title="TFBOYS">TFBOYS</a></span></h5><span class="count " style="display: inline-block;"></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="003vHYQf1XqU7V" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1276189,"albummid":"001fi1zG0EjU2u","albumname":"有理想","alertid":2,"belongCD":7,"cdIdx":0,"interval":312,"isonly":1,"msgid":14,"pay":{"payalbum":1,"payalbumprice":1500,"paydownload":1,"payinfo":1,"payplay":1,"paytrackmouth":1,"paytrackprice":200,"timefree":0},"preview":{"trybegin":70232,"tryend":122482,"trysize":837171},"rate":31,"singer":[{"id":60505,"mid":"000aHmbL2aPXWH","name":"李荣浩"}],"size128":5009016,"size320":12522251,"size5_1":0,"sizeape":35578833,"sizeflac":35798625,"sizeogg":6997921,"songid":102367085,"songmid":"000edAg12jLBrN","songname":"不将就 (《何以笙箫默》电影片尾曲)","songtype":0,"strMediaMid":"000edAg12jLBrN","stream":6,"switch":112387,"type":0,"vid":"a001738g7ov","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":0,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":1,"play":1},"time":"05:12","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>1</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=000edAg12jLBrN&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music');" title="不将就 (《何以笙箫默》电影片尾曲)">不将就 (《何以笙箫默》电影片尾曲)</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=000aHmbL2aPXWH" target="contentFrame" title="李荣浩">李荣浩</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="000edAg12jLBrN" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1259900,"albummid":"003vkgQH3I7RLY","albumname":"原动力 (星战版)","alertid":2,"belongCD":1,"cdIdx":0,"interval":210,"isonly":1,"msgid":14,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":1,"payinfo":1,"payplay":1,"paytrackmouth":1,"paytrackprice":200,"timefree":0},"preview":{"trybegin":91471,"tryend":115958,"trysize":392880},"rate":31,"singer":[{"id":204664,"mid":"001SqkF53OEhdO","name":"鹿晗"}],"size128":3367689,"size320":8418379,"size5_1":0,"sizeape":25682612,"sizeflac":25745030,"sizeogg":4876489,"songid":105404257,"songmid":"000xZzUV1lhRfp","songname":"原动力 (星战版) (《星球大战》电影推广曲)","songtype":0,"strMediaMid":"000xZzUV1lhRfp","stream":10,"switch":112387,"type":0,"vid":"q0019177jkn","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":0,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":1,"play":1},"time":"03:30","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>2</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=000xZzUV1lhRfp&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music');" title="原动力 (星战版) (《星球大战》电影推广曲)">原动力 (星战版) (《星球大战》电影推广曲)</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=001SqkF53OEhdO" target="contentFrame" title="鹿晗">鹿晗</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="000xZzUV1lhRfp" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1240412,"albummid":"003fng4t4EEZEA","albumname":"星星泪","alertid":11,"belongCD":1,"cdIdx":0,"interval":184,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":33701,"tryend":59001,"trysize":405837},"rate":31,"singer":[{"id":202409,"mid":"004LCG2p1Lf2o0","name":"宋茜"}],"size128":2949730,"size320":7374037,"size5_1":0,"sizeape":20238670,"sizeflac":20329693,"sizeogg":4276294,"songid":105247934,"songmid":"002D7DHZ3EkPNA","songname":"星星泪 (《美丽的秘密》电视剧主题曲)","songtype":0,"strMediaMid":"002D7DHZ3EkPNA","stream":2,"switch":79635,"type":0,"vid":"c0019vunx0i","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"03:04","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>3</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=002D7DHZ3EkPNA&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music');" title="星星泪 (《美丽的秘密》电视剧主题曲)">星星泪 (《美丽的秘密》电视剧主题曲)</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=004LCG2p1Lf2o0" target="contentFrame" title="宋茜">宋茜</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="002D7DHZ3EkPNA" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1258253,"albummid":"003D0jU40YataC","albumname":"太子妃升职记 网络剧原声带","alertid":11,"belongCD":1,"cdIdx":0,"interval":282,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":105130,"tryend":136970,"trysize":510327},"rate":31,"singer":[{"id":37459,"mid":"004QYGOE4OeXgX","name":"崔子格"}],"size128":4526722,"size320":11316469,"size5_1":0,"sizeape":30907780,"sizeflac":31097282,"sizeogg":6393744,"songid":105391500,"songmid":"001fk9Xm2SUhla","songname":"可念不可说 (《太子妃升职记》网络剧主题曲)","songtype":0,"strMediaMid":"001fk9Xm2SUhla","stream":3,"switch":79635,"type":0,"vid":"g0019hhpdtj","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"04:42","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>4</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=001fk9Xm2SUhla&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music');" title="可念不可说 (《太子妃升职记》网络剧主题曲)">可念不可说 (《太子妃升职记》网络剧主题曲)</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=004QYGOE4OeXgX" target="contentFrame" title="崔子格">崔子格</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="001fk9Xm2SUhla" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1267525,"albummid":"0048NQ5G3ZQyXr","albumname":"表白","alertid":2,"belongCD":1,"cdIdx":0,"interval":236,"isonly":1,"msgid":14,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":1,"payinfo":1,"payplay":1,"paytrackmouth":1,"paytrackprice":200,"timefree":0},"preview":{"trybegin":51599,"tryend":82428,"trysize":494444},"rate":31,"singer":[{"id":13461,"mid":"000in2fg3O6W83","name":"陈伟霆"}],"size128":3787318,"size320":9468010,"size5_1":0,"sizeape":23007447,"sizeflac":23178137,"sizeogg":4998418,"songid":105461542,"songmid":"002tRbO534UiWy","songname":"表白","songtype":0,"strMediaMid":"002tRbO534UiWy","stream":5,"switch":112387,"type":0,"vid":"b00195mh862","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":0,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":1,"play":1},"time":"03:56","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>5</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=002tRbO534UiWy&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music');" title="表白">表白</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=000in2fg3O6W83" target="contentFrame" title="陈伟霆">陈伟霆</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="002tRbO534UiWy" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1267462,"albummid":"000I4CFA03SRGW","albumname":"不说再见","alertid":11,"belongCD":1,"cdIdx":0,"interval":296,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":108226,"tryend":154912,"trysize":748146},"rate":7,"singer":[{"id":60433,"mid":"002Ua1Ph1SH8iF","name":"好妹妹乐队"}],"size128":4739023,"size320":11847255,"size5_1":0,"sizeape":0,"sizeflac":0,"sizeogg":6946748,"songid":105460886,"songmid":"0000xYPh1yUoyt","songname":"不说再见 (《谁的青春不迷茫》电影主题曲)","songtype":0,"strMediaMid":"0000xYPh1yUoyt","stream":2,"switch":79635,"type":0,"vid":"m0178qd1etl","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"04:56","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>6</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=0000xYPh1yUoyt&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music');" title="不说再见 (《谁的青春不迷茫》电影主题曲)">不说再见 (《谁的青春不迷茫》电影主题曲)</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=002Ua1Ph1SH8iF" target="contentFrame" title="好妹妹乐队">好妹妹乐队</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="0000xYPh1yUoyt" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1273231,"albummid":"001aczn92BdIiV","albumname":"无敌","alertid":11,"belongCD":1,"cdIdx":0,"interval":86,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":30607,"tryend":45927,"trysize":246177},"rate":31,"singer":[{"id":12530,"mid":"0039Dmhi0dVZc9","name":"邓超"}],"size128":1386140,"size320":3465069,"size5_1":0,"sizeape":9463618,"sizeflac":9489952,"sizeogg":2012194,"songid":105503773,"songmid":"0038RM350w8m1V","songname":"无敌 (《美人鱼》电影宣传曲)","songtype":0,"strMediaMid":"0038RM350w8m1V","stream":1,"switch":79635,"type":0,"vid":"q0019e82cag","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"01:26","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>7</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=0038RM350w8m1V&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music');" title="无敌 (《美人鱼》电影宣传曲)">无敌 (《美人鱼》电影宣传曲)</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=0039Dmhi0dVZc9" target="contentFrame" title="邓超">邓超</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="0038RM350w8m1V" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1280498,"albummid":"001PqCSC0xOlli","albumname":"从你的全世界路过","alertid":100002,"belongCD":1,"cdIdx":0,"interval":297,"isonly":1,"msgid":14,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":1,"payinfo":1,"payplay":0,"paytrackmouth":1,"paytrackprice":200,"timefree":0},"preview":{"trybegin":112414,"tryend":142483,"trysize":482323},"rate":31,"singer":[{"id":4422,"mid":"0012bj8d36Xkw1","name":"牛奶咖啡"}],"size128":4759099,"size320":11897424,"size5_1":0,"sizeape":30656422,"sizeflac":30863261,"sizeogg":6746094,"songid":105561979,"songmid":"000PVCpF21PLUY","songname":"从你的全世界路过","songtype":0,"strMediaMid":"000PVCpF21PLUY","stream":8,"switch":112387,"type":0,"vid":"o018411qjwa","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":0,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":1,"play":1},"time":"04:57","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>8</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=000PVCpF21PLUY&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music');" title="从你的全世界路过">从你的全世界路过</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=0012bj8d36Xkw1" target="contentFrame" title="牛奶咖啡">牛奶咖啡</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="000PVCpF21PLUY" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1230948,"albummid":"000oxFgZ0cV589","albumname":"万万没想到 电影原声带","alertid":11,"belongCD":2,"cdIdx":0,"interval":242,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":44355,"tryend":74495,"trysize":483159},"rate":31,"singer":[{"id":4289,"mid":"002sfdNU1f3nHD","name":"赵英俊"}],"size128":3873445,"size320":9683287,"size5_1":0,"sizeape":29024681,"sizeflac":29168584,"sizeogg":5903527,"songid":105164089,"songmid":"003qKBfB2nc0RX","songname":"大王叫我来巡山 (《万万没想到》电影插曲)","songtype":0,"strMediaMid":"003qKBfB2nc0RX","stream":8,"switch":79635,"type":0,"vid":"z0019u80c82","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"04:02","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>9</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=003qKBfB2nc0RX&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music');" title="大王叫我来巡山 (《万万没想到》电影插曲)">大王叫我来巡山 (《万万没想到》电影插曲)</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=002sfdNU1f3nHD" target="contentFrame" title="赵英俊">赵英俊</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="003qKBfB2nc0RX" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1257517,"albummid":"003Ctmj80muigz","albumname":"异类","alertid":11,"belongCD":2,"cdIdx":0,"interval":245,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":39567,"tryend":64776,"trysize":404583},"rate":31,"singer":[{"id":163550,"mid":"002Vcz8F2hpBQj","name":"华晨宇"},{"id":11608,"mid":"003tMm0y0TuewY","name":"杨宗纬"}],"size128":3927346,"size320":9818063,"size5_1":0,"sizeape":27511907,"sizeflac":27628679,"sizeogg":5562102,"songid":102792420,"songmid":"000VdyNV4aPPTw","songname":"国王与乞丐","songtype":0,"strMediaMid":"000VdyNV4aPPTw","stream":3,"switch":79635,"type":0,"vid":"h0017hi9x2e","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"04:05","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>10</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=000VdyNV4aPPTw&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music');" title="国王与乞丐">国王与乞丐</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=002Vcz8F2hpBQj" target="contentFrame" title="华晨宇">华晨宇</a> / <a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=003tMm0y0TuewY" target="contentFrame" title="杨宗纬">杨宗纬</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="000VdyNV4aPPTw" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><script type="text/data" class="data">{"albumid":1267681,"albummid":"003AIFiv0q3x4X","albumname":"伪流行","alertid":11,"belongCD":8,"cdIdx":0,"interval":222,"isonly":0,"msgid":0,"pay":{"payalbum":1,"payalbumprice":1400,"paydownload":1,"payinfo":1,"payplay":1,"paytrackmouth":0,"paytrackprice":200,"timefree":1},"preview":{"trybegin":64676,"tryend":100394,"trysize":572603},"rate":31,"singer":[{"id":69205,"mid":"003ZQQb64D5317","name":"南征北战"}],"size128":3565419,"size320":8913207,"size5_1":0,"sizeape":28143792,"sizeflac":27873617,"sizeogg":5205911,"songid":105462404,"songmid":"002JeWoE3Mjodh","songname":"萨瓦迪卡 (《唐人街探案》电影片尾曲)","songtype":0,"strMediaMid":"002JeWoE3Mjodh","stream":1,"switch":112403,"type":0,"vid":"f0018lh7c5c","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":1,"play":1},"time":"03:42","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>11</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=002JeWoE3Mjodh&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong','Rankingn.music');" title="萨瓦迪卡 (《唐人街探案》电影片尾曲)">萨瓦迪卡 (《唐人街探案》电影片尾曲)</a></span><span class="recommend_singer "><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=003ZQQb64D5317" target="contentFrame" title="南征北战">南征北战</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="002JeWoE3Mjodh" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li></ol>
+                    </div>
+                </div>
+            </div>
+            <!--E 官方推荐-->
+            <!--S 精选集-->
+            <div class="mod_special">
+                <div class="title"><h2>精选集</h2></div>
+                <div class="mod_content">
+                    <ul class="special_list">
+						
+						
+						<li class="mod_cover">
+                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=artx6eb4qnw2ccw&amp;pgv_ref=qqmusic.y.index.Choose.pic1" class="mod_poster" target="_blank" title="MV精选"><img width="270" height="270" alt="MV精选" title="MV精选" src="http://i.gtimg.cn/music/common//upload/y/index/20151015175001.jpg?max_age=2592000"></a>
+                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=artx6eb4qnw2ccw&amp;pgv_ref=qqmusic.y.index.Choose.title1" target="_blank" title="MV精选">MV精选</a></h5>
+                            <p class="mod_special_text">音乐抚慰青春之痛，追忆那时的蜜语甜言。</p>
+                        </li>
+						
+						
+						<li>
+                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=1iqnfiyrsz3yn79&amp;pgv_ref=qqmusic.y.index.Choose.pic2" target="_blank" class="mod_poster_130" title="相恋跨越时空"><img width="130" height="130" alt="相恋跨越时空" title="相恋跨越时空" src="http://i.gtimg.cn/music/common//upload/y/index/20151015160924.jpg?max_age=2592000"></a>
+                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=1iqnfiyrsz3yn79&amp;pgv_ref=qqmusic.y.index.Choose.title2" target="_blank" title="相恋跨越时空">相恋跨越时空</a></h5>
+                        </li>
+						
+						
+						<li>
+                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=p3q7f9cuybrvezj&amp;pgv_ref=qqmusic.y.index.Choose.pic3" target="_blank" class="mod_poster_130" title="一枝独秀更耀眼！"><img width="130" height="130" alt="一枝独秀更耀眼！" title="一枝独秀更耀眼！" src="http://i.gtimg.cn/music/common//upload/y/index/20151015161200.jpg?max_age=2592000"></a>
+                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=p3q7f9cuybrvezj&amp;pgv_ref=qqmusic.y.index.Choose.title3" target="_blank" title="一枝独秀更耀眼！">一枝独秀更耀眼！</a></h5>
+                        </li>
+						
+						
+						<li>
+                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=gve4um0ht2ls9xn&amp;pgv_ref=qqmusic.y.index.Choose.pic4" target="_blank" class="mod_poster_130" title="音乐和短裙最配"><img width="130" height="130" alt="音乐和短裙最配" title="音乐和短裙最配" src="http://i.gtimg.cn/music/common//upload/y/index/20151015161125.jpg?max_age=2592000"></a>
+                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=gve4um0ht2ls9xn&amp;pgv_ref=qqmusic.y.index.Choose.title4" target="_blank" title="音乐和短裙最配">音乐和短裙最配</a></h5>
+                        </li>
+						
+						
+						<li>
+                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=cb7l6mwyjxqctqo&amp;pgv_ref=qqmusic.y.index.Choose.pic5" target="_blank" class="mod_poster_130" title="音乐时尚两不误"><img width="130" height="130" alt="音乐时尚两不误" title="音乐时尚两不误" src="http://i.gtimg.cn/music/common//upload/y/index/20151015160855.jpg?max_age=2592000"></a>
+                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=cb7l6mwyjxqctqo&amp;pgv_ref=qqmusic.y.index.Choose.title5" target="_blank" title="音乐时尚两不误">音乐时尚两不误</a></h5>
+                        </li>
+						
+						
+						<li>
+                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=0afhqay0ads6hie&amp;pgv_ref=qqmusic.y.index.Choose.pic6" target="_blank" class="mod_poster_130" title="好的歌手会搞怪"><img width="130" height="130" alt="好的歌手会搞怪" title="好的歌手会搞怪" src="http://i.gtimg.cn/music/common//upload/y/index/20151015161017.jpg?max_age=2592000"></a>
+                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=0afhqay0ads6hie&amp;pgv_ref=qqmusic.y.index.Choose.title6" target="_blank" title="好的歌手会搞怪">好的歌手会搞怪</a></h5>
+                        </li>
+						
+						
+						<li>
+                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=zk1f1yvcl2v4hwb&amp;pgv_ref=qqmusic.y.index.Choose.pic7" target="_blank" class="mod_poster_130" title="静享一曲中国风"><img width="130" height="130" alt="静享一曲中国风" title="静享一曲中国风" src="http://i.gtimg.cn/music/common//upload/y/index/20151015161055.jpg?max_age=2592000"></a>
+                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=zk1f1yvcl2v4hwb&amp;pgv_ref=qqmusic.y.index.Choose.title7" target="_blank" title="静享一曲中国风">静享一曲中国风</a></h5>
+                        </li>
+						
+                    </ul>
+                </div>
+            </div>
+            <!--E 精选集-->
+        </div>
+        <div class="side_container">
+        	<!--S 用户未登录-->
+            <div class="mod_login" id="logintab" style="display: block;">
+            	<a href="javascript:;" onclick="g_user.openLoginPage('parent');pgvClickStat('login');return false;" class="btn_login" title="用户登录">用户登录</a>
+            </div>
+            <!--E 用户未登录-->
+            <!--S 用户信息-->
+            <div class="mod_user" id="userInfo" style="display:none;">
+                <div class="mod_content">
+                    <div class="mod_user_info" id="mod_user_info">
+                    </div>
+                    <div class="mod_tips" id="speed_tips" style="display:none;" onmouseover="g_recomChn._speedTipsShow = true;" onmouseout="g_recomChn._speedTipsShow = false;setTimeout(function(){g_recomChn.hideSpeedTips();}, 300);">
+                    </div>
+                    <ul class="mod_user_statistic" id="user_summary">
+                        
+                    </ul>
+                    <div class="vip_info" id="vip_priv" style="display:none;">
+                        <a href="javascript:;" onclick="g_user.openVip('music.y.sfw.1');return false;" class="link_renew" title="续费绿钻">续费绿钻</a>
+                        <p>您是绿钻，尊享以下特权：</p>
+                        <ul class="vip_info_close" id="priv_list">
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_dow.html" target="_blank" title="HQ（高品质）音乐下载"><i class="icon_p_hqd">HQ(高品质)音乐下载</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_aud.html" target="_blank" title="HQ（高品质）音乐试听"><i class="icon_p_hq">HQ(高品质)音乐试听</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_ser.html" target="_blank" title="SQ（超品质）音乐下载"><i class="icon_p_sq">SQ(超品质)音乐下载</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_song.html" target="_blank" title="超大云歌单"><i class="icon_p_gd">超大云歌单</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_zone.html" target="_blank" title="设置QQ空间背景音乐"><i class="icon_p_qzone">设置QQ空间背景音乐</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_sym.html" target="_blank" title="尊贵标识"><i class="icon_p_bs">尊贵标识</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_sing.html" target="_blank" title="QQ音乐首唱会"><i class="icon_p_sc">QQ音乐首唱会</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/perform.html" target="_blank" title="票务特权"><i class="icon_p_piao">票务特权</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/off_line.html" target="_blank" title="自动下载"><i class="icon_p_lx">自动下载</i></a></li>
+                            <li><a href="http://vip.music.qq.com/privilege_game.html" target="_blank" title="游戏特权"><i class="icon_p_game">游戏特权</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/group_share.html" target="_blank" title="点歌到QQ群"><i class="icon_p_qun">点歌到QQ群</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_filter.html" target="_blank" title="客户端听歌免广告"><i class="icon_p_adv">客户端听歌免广告</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/mv_share.html" target="_blank" title="点送MV"><i class="icon_p_mv">点送MV</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/mv_filter.html" target="_blank" title="MV观看免广告"><i class="icon_p_mva">MV观看免广告</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_upload.html" target="_blank" title="上传本地音乐"><i class="icon_p_up">上传本地音乐</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/batch_download.html" target="_blank" title="批量下载"><i class="icon_p_down">批量下载</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/star.html" target="_blank" title="QQ音乐大牌在线"><i class="icon_p_dp">QQ音乐大牌在线</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/mini_concert.html" target="_blank" title="QQ音乐尊享音乐会"><i class="icon_p_zx">QQ音乐尊享音乐会</i></a></li>
+                            <li><a href="http://vip.music.qq.com/privilege_buy.html" target="_blank" title="购物特权"><i class="icon_p_buy">购物特权</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_storage_dow.html" target="_blank" title="下载历史漫游"><i class="icon_p_my">下载历史漫游</i></a></li>
+                        </ul>
+                        <a href="javascript:;" class="open_vip_list" onclick="g_recomChn.changePrive(this);return;"><i></i></a>
+                    </div>
+					<div class="vip_info" id="vip_priv_g" style="display:none;">
+                        <a href="javascript:;" onclick="g_user.openVip('music.y.sfw.1');return false;" class="link_renew" title="续费">续费</a>
+                        <p>绿钻到期，您已无法享有以下特权：</p>
+                        <ul class="vip_info_close">
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_dow.html" target="_blank" title="HQ（高品质）音乐下载"><i class="icon_p_hqd_disabled">HQ(高品质)音乐下载</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_aud.html" target="_blank" title="HQ（高品质）音乐试听"><i class="icon_p_hq_disabled">HQ(高品质)音乐试听</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_ser.html" target="_blank" title="SQ（超品质）音乐下载"><i class="icon_p_sq_disabled">SQ(超品质)音乐下载</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_song.html" target="_blank" title="超大云歌单"><i class="icon_p_gd_disabled">超大云歌单</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_zone.html" target="_blank" title="设置QQ空间背景音乐"><i class="icon_p_qzone_disabled">设置QQ空间背景音乐</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_sym.html" target="_blank" title="尊贵标识"><i class="icon_p_bs_disabled">尊贵标识</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_sing.html" target="_blank" title="QQ音乐首唱会"><i class="icon_p_sc_disabled">QQ音乐首唱会</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/perform.html" target="_blank" title="票务特权"><i class="icon_p_piao_disabled">票务特权</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/off_line.html" target="_blank" title="自动下载"><i class="icon_p_lx_disabled">自动下载</i></a></li>
+                            <li><a href="http://vip.music.qq.com/privilege_game.html" target="_blank" title="游戏特权"><i class="icon_p_game_disabled">游戏特权</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/group_share.html" target="_blank" title="点歌到QQ群"><i class="icon_p_qun_disabled">点歌到QQ群</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_filter.html" target="_blank" title="客户端听歌免广告"><i class="icon_p_adv_disabled">客户端听歌免广告</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/mv_share.html" target="_blank" title="点送MV"><i class="icon_p_mv_disabled">点送MV</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/mv_filter.html" target="_blank" title="MV观看免广告"><i class="icon_p_mva_disabled">MV观看免广告</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_detail_upload.html" target="_blank" title="上传本地音乐"><i class="icon_p_up_disabled">上传本地音乐</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/batch_download.html" target="_blank" title="批量下载"><i class="icon_p_down_disabled">批量下载</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/star.html" target="_blank" title="QQ音乐大牌在线"><i class="icon_p_dp_disabled">QQ音乐大牌在线</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/mini_concert.html" target="_blank" title="QQ音乐尊享音乐会"><i class="icon_p_zx_disabled">QQ音乐尊享音乐会</i></a></li>
+                            <li><a href="http://vip.music.qq.com/privilege_buy.html" target="_blank" title="购物特权"><i class="icon_p_buy_disabled">购物特权</i></a></li>
+                            <li><a href="http://vip.music.qq.com/v2/privileges/privilege_storage_dow.html" target="_blank" title="下载历史漫游"><i class="icon_p_my_disabled">下载历史漫游</i></a></li>
+                        </ul>
+                        <a href="javascript:;" class="open_vip_list" onclick="g_recomChn.changePrive(this);return;"><i></i></a>
+                    </div>
+					<div class="normal_info" id="normal_priv" style="display:none;">
+                        <p>您还不是绿钻贵族，无法享受空间背景音乐免费使用、高品质音乐下载、高清音乐视频...等精彩特权。</p>
+                        <p><a class="openv_btn" href="javascript:;" onclick="g_user.openVip('music.y.sfw.1');return false;" title="开通绿钻">开通绿钻</a></p>
+                    </div>
+                </div>
+            </div>
+            <!--S 客户端下载-->
+            <div class="mod_ad" style="display:block;" id="divmodads"><ul id="divimginfog_imgPlayer2"><li class="current" style="display: block;"><a href="http://v.qq.com/live/p/topic/4194/preview.html" onclick="g_imgPlayer2.stat(1);" target="_blank"><img src="http://i.gtimg.cn/music/common//upload/y/index/20160304114631.jpg" alt="BIGBANG演唱会"></a></li><li style="display: none;"><a href="http://v.qq.com/cover/z/zn53knfb8c19i7u.html" onclick="g_imgPlayer2.stat(2);" target="_blank"><img src="http://i.gtimg.cn/music/common//upload/y/index/20160301111454.jpg" alt="周蕙台北音乐会"></a></li><li style="display: none;"><a href="http://v.qq.com/cover/k/k0lt6oj7clm9b1g.html" onclick="g_imgPlayer2.stat(3);" target="_blank"><img src="http://i.gtimg.cn/music/common//upload/y/index/20160201142318.jpg" alt="Rain演唱会"></a></li><li style="display: none;"><a href="http://mobile.qzone.qq.com/l?g=2465" onclick="g_imgPlayer2.stat(4);" target="_blank"><img src="http://i.gtimg.cn/music/common//upload/y/index/20160128151802.jpg" alt="范玮琪尊享会回顾"></a></li><li style="display: none;"><a href="http://qzs.qq.com/qzone/v6/v6_config/pact.html?act=10024&amp;g_f=1001" onclick="g_imgPlayer2.stat(5);" target="_blank"><img src="http://i.gtimg.cn/music/common//upload/y/index/20160114101033.jpg" alt="陈奕迅天津演唱会"></a></li></ul><div class="switch" id="divpageinfog_imgPlayer2"><a href="javascript:;" onmouseover="g_imgPlayer2.play(0);return false;" onclick="g_imgPlayer2.play(0);" class="current">0</a><a href="javascript:;" onmouseover="g_imgPlayer2.play(1);return false;" onclick="g_imgPlayer2.play(1);" class="">1</a><a href="javascript:;" onmouseover="g_imgPlayer2.play(2);return false;" onclick="g_imgPlayer2.play(2);" class="">2</a><a href="javascript:;" onmouseover="g_imgPlayer2.play(3);return false;" onclick="g_imgPlayer2.play(3);" class="">3</a><a href="javascript:;" onmouseover="g_imgPlayer2.play(4);return false;" onclick="g_imgPlayer2.play(4);" class="">4</a></div></div>
+            <!--E 客户端下载-->
+            <!--E 用户信息-->
+			<div class="mod_forme" style="display:none;" id="id_forme">
+                <div class="title">
+                    <h2>发现音乐</h2>
+                </div>
+                <div class="mod_content">
+                    <ul class="push_list" id="id_recomlist">
+                        
+                    </ul>
+                    <div class="mod_page">
+                        <a href="javascript:;" class="prev" id="id_formeprev" title="上一页"><span>&lt;</span></a><a href="javascript:;" id="id_formepage">1</a><a href="javascript:;" class="next" id="id_formenext" title="下一页"><span>&gt;</span></a>
+                    </div>
+                </div>
+            </div>
+            <!--S 排行榜-->
+            <div class="mod_rank">
+                <div class="title">
+                    <h2>排行榜</h2>
+                </div>
+                <div class="mod_t_play"><a href="javascript:;" name="script_btn" class="mod_play" title="播放">播放</a><a href="javascript:;" name="script_btn" class="mod_add" title="添加">添加</a></div>				
+                <div class="mod_content">
+					
+					<ul class="mod_sort_index" id="topsongTag"><li class="first current"> <a href="javascript:;" onclick="g_recomChn.showSongTab('zhi', 0, {songList:'topSongList',tag:'topsongTag'});pgvClickStat('index.Ranking.tab1');" class="">流行指数</a> </li><li> <a href="javascript:;" onclick="g_recomChn.showSongTab('neidi', 0, {songList:'topSongList',tag:'topsongTag'});pgvClickStat('index.Ranking.tab2');" class="">内地</a> </li><li> <a href="javascript:;" onclick="g_recomChn.showSongTab('gangtai', 0, {songList:'topSongList',tag:'topsongTag'});pgvClickStat('index.Ranking.tab3');" class="">港台</a> </li><li> <a href="javascript:;" onclick="g_recomChn.showSongTab('oumei', 0, {songList:'topSongList',tag:'topsongTag'});pgvClickStat('index.Ranking.tab4');" class="">欧美</a> </li><li class="last"> <a href="javascript:;" onclick="g_recomChn.showSongTab('hanguo', 0, {songList:'topSongList',tag:'topsongTag'});pgvClickStat('index.Ranking.tab5');" class="">韩国</a> </li></ul>
+                    <ol class="mod_rank_list" id="topSongList"><li class="rank_top"><script type="text/data" class="data">{"albumid":1287684,"albummid":"001XeLXh1XaZ0b","albumname":"他比我更适合","alertid":11,"belongCD":1,"cdIdx":0,"interval":264,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":76449,"tryend":117438,"trysize":657030},"rate":31,"singer":[{"id":24833,"mid":"002mze3U0NYXOM","name":"胡夏"}],"size128":4227443,"size320":10568302,"size5_1":0,"sizeape":30105642,"sizeflac":30077485,"sizeogg":6197573,"songid":105618328,"songmid":"003h2b7B3Qtr5R","songname":"他比我更适合 (《因为爱情有幸福》电视剧主题曲)","songtype":0,"strMediaMid":"003h2b7B3Qtr5R","stream":4,"switch":79635,"type":0,"vid":"","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"04:24","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>0</em><a class="mod_poster" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_album_detail_cp.fcg?tpl=20&amp;albummid=001XeLXh1XaZ0b&amp;pgv_ref=qqmusic.y.index.Ranking.pic1" title="他比我更适合"><img src="http://i.gtimg.cn/music/photo/mid_album_68/0/b/001XeLXh1XaZ0b.jpg" onerror="this.src='http://i.gtimg.cn/mediastyle/y/img/cover_mine_130.jpg';this.onerror=null;" width="50" height="50" alt="他比我更适合" title="他比我更适合"></a><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=003h2b7B3Qtr5R&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong');pgvClickStat('index.Ranking.music1');" title="他比我更适合 (《因为爱情有幸福》电视剧主题曲)">他比我更适合 (《因...</a></h5><p><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=002mze3U0NYXOM" target="contentFrame" title="胡夏">胡夏</a></p></li><li><script type="text/data" class="data">{"albumid":1288403,"albummid":"002LhbR41fJ1Ln","albumname":"对的错","alertid":11,"belongCD":1,"cdIdx":0,"interval":201,"isonly":1,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":47616,"tryend":75284,"trysize":443871},"rate":31,"singer":[{"id":200596,"mid":"000I21Wg1XFcbh","name":"陈冰"}],"size128":3227672,"size320":8068894,"size5_1":0,"sizeape":28091196,"sizeflac":28242541,"sizeogg":4901819,"songid":105623913,"songmid":"004g9bJz2MO0mG","songname":"对的错","songtype":0,"strMediaMid":"004g9bJz2MO0mG","stream":3,"switch":79635,"type":0,"vid":"","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"03:21","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>1</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=004g9bJz2MO0mG&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong');pgvClickStat('index.Ranking.music2');" title="对的错">对的错</a></h5><p><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=000I21Wg1XFcbh" target="contentFrame" title="陈冰">陈冰</a></p></li><li><script type="text/data" class="data">{"albumid":1287958,"albummid":"001vzaZl36iFwn","albumname":"中国好歌曲第三季 第5期","alertid":11,"belongCD":11,"cdIdx":0,"interval":222,"isonly":1,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":76068,"tryend":99535,"trysize":376580},"rate":31,"singer":[{"id":4422,"mid":"0012bj8d36Xkw1","name":"牛奶咖啡"}],"size128":3553900,"size320":8884781,"size5_1":0,"sizeape":23272692,"sizeflac":23450949,"sizeogg":4594576,"songid":105620806,"songmid":"001QGVJl1k8U4z","songname":"Let You Go (Live) (选择导师：范晓萱)","songtype":0,"strMediaMid":"001QGVJl1k8U4z","stream":8,"switch":79635,"type":0,"vid":"m0019snbakz","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"03:42","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>2</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=001QGVJl1k8U4z&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong');pgvClickStat('index.Ranking.music3');" title="Let You Go (Live) (选择导师：范晓萱)">Let You Go (Live...</a></h5><p><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=0012bj8d36Xkw1" target="contentFrame" title="牛奶咖啡">牛奶咖啡</a></p></li><li><script type="text/data" class="data">{"albumid":692,"albummid":"001hwHIx0KmEUJ","albumname":"温故知新 一个人的天荒地老","alertid":11,"belongCD":1,"cdIdx":0,"interval":294,"isonly":1,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":79543,"tryend":114500,"trysize":560482},"rate":31,"singer":[{"id":168,"mid":"0044wQXL0ElWF1","name":"张宇"}],"size128":4716039,"size320":11789789,"size5_1":0,"sizeape":31231639,"sizeflac":31380199,"sizeogg":6716617,"songid":103176840,"songmid":"0018Gc9s0zF4BH","songname":"一个人的天荒地老 (我是歌手4第7期黄致列参赛曲目)","songtype":0,"strMediaMid":"0018Gc9s0zF4BH","stream":2,"switch":79635,"type":0,"vid":"x0011fpbkyt","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"04:54","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>3</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=0018Gc9s0zF4BH&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong');pgvClickStat('index.Ranking.music4');" title="一个人的天荒地老 (我是歌手4第7期黄致列参赛曲目)">一个人的天荒地老...</a></h5><p><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=0044wQXL0ElWF1" target="contentFrame" title="张宇">张宇</a></p></li><li><script type="text/data" class="data">{"albumid":1287958,"albummid":"001vzaZl36iFwn","albumname":"中国好歌曲第三季 第5期","alertid":11,"belongCD":13,"cdIdx":0,"interval":184,"isonly":1,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":72442,"tryend":108242,"trysize":573857},"rate":31,"singer":[{"id":165460,"mid":"001hJ4my0ZNXqD","name":"邱比"}],"size128":2948470,"size320":7370513,"size5_1":0,"sizeape":18465747,"sizeflac":18568273,"sizeogg":3830738,"songid":105620808,"songmid":"001qgMe11F8vXG","songname":"整夜大雨后 (Live) (选择导师：刘欢)","songtype":0,"strMediaMid":"001qgMe11F8vXG","stream":8,"switch":79635,"type":0,"vid":"b0019f3u5bs","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"03:04","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>4</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=001qgMe11F8vXG&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong');pgvClickStat('index.Ranking.music5');" title="整夜大雨后 (Live) (选择导师：刘欢)">整夜大雨后 (Live...</a></h5><p><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=001hJ4my0ZNXqD" target="contentFrame" title="邱比">邱比</a></p></li><li><script type="text/data" class="data">{"albumid":1284623,"albummid":"003zglha47p1I5","albumname":"真心话太冒险","alertid":11,"belongCD":1,"cdIdx":0,"interval":220,"isonly":1,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":43231,"tryend":74648,"trysize":503639},"rate":31,"singer":[{"id":34412,"mid":"000zmpju02bEBm","name":"TFBOYS"}],"size128":3533221,"size320":8832325,"size5_1":0,"sizeape":26996444,"sizeflac":27177225,"sizeogg":5383241,"songid":105593336,"songmid":"001Gv41R2uQoYf","songname":"真心话太冒险","songtype":0,"strMediaMid":"001Gv41R2uQoYf","stream":3,"switch":79635,"type":0,"vid":"","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"03:40","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>5</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=001Gv41R2uQoYf&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong');pgvClickStat('index.Ranking.music6');" title="真心话太冒险">真心话太冒险</a></h5><p><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=000zmpju02bEBm" target="contentFrame" title="TFBOYS">TFBOYS</a></p></li><li><script type="text/data" class="data">{"albumid":1287958,"albummid":"001vzaZl36iFwn","albumname":"中国好歌曲第三季 第5期","alertid":11,"belongCD":6,"cdIdx":0,"interval":189,"isonly":1,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":72504,"tryend":104303,"trysize":509909},"rate":31,"singer":[{"id":166879,"mid":"002ACcAO2fXK1n","name":"原子邦妮"}],"size128":3035851,"size320":7588995,"size5_1":0,"sizeape":23127187,"sizeflac":23160818,"sizeogg":4082634,"songid":105620813,"songmid":"002VP7pj3VMdO8","songname":"美人泪 (Live) (选择导师：刘欢)","songtype":0,"strMediaMid":"002VP7pj3VMdO8","stream":8,"switch":79635,"type":0,"vid":"b0019udm0bj","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"03:09","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>6</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=002VP7pj3VMdO8&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong');pgvClickStat('index.Ranking.music7');" title="美人泪 (Live) (选择导师：刘欢)">美人泪 (Live) (...</a></h5><p><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=002ACcAO2fXK1n" target="contentFrame" title="原子邦妮">原子邦妮</a></p></li><li><script type="text/data" class="data">{"albumid":15670,"albummid":"003bJKvf2LdzYZ","albumname":"梦里花","alertid":2,"belongCD":2,"cdIdx":0,"interval":247,"isonly":1,"msgid":14,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":1,"payinfo":1,"payplay":1,"paytrackmouth":1,"paytrackprice":200,"timefree":0},"preview":{"trybegin":63556,"tryend":95386,"trysize":510327},"rate":31,"singer":[{"id":224,"mid":"002raUWw3PXdkT","name":"张韶涵"}],"size128":3953023,"size320":9877937,"size5_1":0,"sizeape":27677244,"sizeflac":28874472,"sizeogg":5648252,"songid":182518,"songmid":"001h08dQ0p8wf5","songname":"不痛 (我是歌手4第7期徐佳莹参赛曲目|《你来自哪颗星》电视剧主题曲)","songtype":0,"strMediaMid":"001h08dQ0p8wf5","stream":2,"switch":112387,"type":0,"vid":"b0017yiojuh","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":0,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":1,"play":1},"time":"04:07","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>7</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=001h08dQ0p8wf5&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong');pgvClickStat('index.Ranking.music8');" title="不痛 (我是歌手4第7期徐佳莹参赛曲目|《你来自哪颗星》电视剧主题曲)">不痛 (我是歌手4...</a></h5><p><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=002raUWw3PXdkT" target="contentFrame" title="张韶涵">张韶涵</a></p></li><li><script type="text/data" class="data">{"albumid":304909,"albummid":"003W5t102sjVNj","albumname":"Everything In The World (白金庆功版)","alertid":11,"belongCD":6,"cdIdx":0,"interval":230,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":31308,"tryend":51776,"trysize":328514},"rate":31,"singer":[{"id":34703,"mid":"0030RkE50nmpWC","name":"曲婉婷"}],"size128":3690009,"size320":9224625,"size5_1":0,"sizeape":28536835,"sizeflac":28702905,"sizeogg":5337963,"songid":3596006,"songmid":"002b4LF810mHRC","songname":"Jar Of Love","songtype":0,"strMediaMid":"002b4LF810mHRC","stream":9,"switch":79635,"type":0,"vid":"N0010JWcJyX","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"03:50","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>8</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=002b4LF810mHRC&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong');pgvClickStat('index.Ranking.music9');" title="Jar Of Love">Jar Of Love</a></h5><p><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=0030RkE50nmpWC" target="contentFrame" title="曲婉婷">曲婉婷</a></p></li><li><script type="text/data" class="data">{"albumid":878,"albummid":"001Vdkw84cPdmT","albumname":"命运符号","alertid":11,"belongCD":7,"cdIdx":0,"interval":290,"isonly":0,"msgid":0,"pay":{"payalbum":0,"payalbumprice":0,"paydownload":0,"payinfo":0,"payplay":0,"paytrackmouth":0,"paytrackprice":0,"timefree":0},"preview":{"trybegin":87385,"tryend":110980,"trysize":378670},"rate":31,"singer":[{"id":235,"mid":"003nS2v740Lxcw","name":"李克勤"}],"size128":4657101,"size320":11642453,"size5_1":0,"sizeape":27620250,"sizeflac":27862427,"sizeogg":6532049,"songid":1431046,"songmid":"001cdurD2fY83O","songname":"月半小夜曲 (我是歌手4第7期容祖儿参赛曲目|原曲：ハーフムーン·セレナーデ)","songtype":0,"strMediaMid":"001cdurD2fY83O","stream":8,"switch":79635,"type":0,"vid":"v0015s9vhhp","action":{"play_lq":1,"play_hq":0,"play_sq":0,"down_lq":1,"down_hq":0,"down_sq":0,"soso":0,"fav":1,"share":1,"bgm":1,"ring":0,"sing":1,"radio":1,"try":0,"give":0,"play":1},"time":"04:50","tryPlay":0,"anyPlay":1,"tryIcon":0,"disabled":0,"sosoFlag":0,"formatted":1,"mtype":"qqmusic","songurl":""}</script><em>9</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songmid=001cdurD2fY83O&amp;tpl=yqq_song_detail" onclick="pgvClickStat('showSingleSong');pgvClickStat('index.Ranking.music10');" title="月半小夜曲 (我是歌手4第7期容祖儿参赛曲目|原曲：ハーフムーン·セレナーデ)">月半小夜曲 (我是...</a></h5><p><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=003nS2v740Lxcw" target="contentFrame" title="李克勤">李克勤</a></p></li></ol>
+                    <ul class="mod_rank_index">
+						
+                        <li><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?page=detail&amp;type=global&amp;topid=123&amp;format=html&amp;tpl=20" title="iTunes榜">iTunes榜</a></li>
+						
+                        <li><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?page=detail&amp;type=global&amp;topid=108&amp;format=html&amp;tpl=20" title="美国公告牌">美国公告牌</a></li>
+						
+                        <li><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?page=detail&amp;type=global&amp;topid=107&amp;format=html&amp;tpl=20" title="英国UK榜">英国UK榜</a></li>
+						
+                        <li><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?page=detail&amp;type=global&amp;topid=104&amp;format=html&amp;tpl=20" title="香港新城榜">香港新城榜</a></li>
+						
+                        <li><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?page=detail&amp;type=global&amp;topid=105&amp;format=html&amp;tpl=20" title="日本公信榜">日本公信榜</a></li>
+						
+                        <li><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?page=detail&amp;type=global&amp;topid=106&amp;format=html&amp;tpl=20" title="韩国MNET">韩国MNET</a></li>
+						
+                        <li><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?page=detail&amp;type=global&amp;topid=107&amp;format=html&amp;tpl=20" title="英国UK榜">英国UK榜</a></li>
+						
+                        <li><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?page=detail&amp;type=global&amp;topid=113&amp;format=html&amp;tpl=20" title="香港电台榜">香港电台榜</a></li>
+						
+                        <li><a target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?page=detail&amp;type=global&amp;topid=157&amp;format=html&amp;tpl=20" title="MTV光荣榜">MTV光荣榜</a></li>
+						
+                    </ul>
+					
+                </div>
+            </div>
+            <!--E 排行榜-->
+            <!--S 热门歌手-->
+            <div class="mod_hot_singer">
+            	<div class="title">
+                	<h2>热门歌手</h2>
+                </div>
+                <div class="mod_more"><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?pgv_ref=qqmusic.y.index.Singer.more" class="mod_more_link" title="更多">更多</a></div>
+                <div class="mod_content">
+                    <div class="hot_singer_list">
+                        <ul>
+							
+                            <li>
+                                <a class="singer_pic" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=004AlfUb0cVkN1&amp;pgv_ref=qqmusic.y.index.Singer.pic1" title="BIGBANG"><img alt="BIGBANG" title="BIGBANG" width="50" height="50" src="http://i.gtimg.cn/music/photo/mid_singer_68/N/1/004AlfUb0cVkN1.jpg?max_age=2592000"></a>
+                                <a class="singer_name" title="BIGBANG" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=004AlfUb0cVkN1&amp;pgv_ref=qqmusic.y.index.Singer.Singer1">BIGBANG</a>
+                            </li>
+							
+                            <li>
+                                <a class="singer_pic" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=0025NhlN2yWrP4&amp;pgv_ref=qqmusic.y.index.Singer.pic2" title="周杰伦"><img alt="周杰伦" title="周杰伦" width="50" height="50" src="http://i.gtimg.cn/music/photo/mid_singer_68/P/4/0025NhlN2yWrP4.jpg?max_age=2592000"></a>
+                                <a class="singer_name" title="周杰伦" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=0025NhlN2yWrP4&amp;pgv_ref=qqmusic.y.index.Singer.Singer2">周杰伦</a>
+                            </li>
+							
+                            <li>
+                                <a class="singer_pic" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=003Nz2So3XXYek&amp;pgv_ref=qqmusic.y.index.Singer.pic3" title="陈奕迅"><img alt="陈奕迅" title="陈奕迅" width="50" height="50" src="http://i.gtimg.cn/music/photo/mid_singer_68/e/k/003Nz2So3XXYek.jpg?max_age=2592000"></a>
+                                <a class="singer_name" title="陈奕迅" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=003Nz2So3XXYek&amp;pgv_ref=qqmusic.y.index.Singer.Singer3">陈奕迅</a>
+                            </li>
+							
+                            <li>
+                                <a class="singer_pic" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=003Cn3Yh16q1MO&amp;pgv_ref=qqmusic.y.index.Singer.pic4" title="庄心妍"><img alt="庄心妍" title="庄心妍" width="50" height="50" src="http://i.gtimg.cn/music/photo/mid_singer_68/M/O/003Cn3Yh16q1MO.jpg?max_age=2592000"></a>
+                                <a class="singer_name" title="庄心妍" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=003Cn3Yh16q1MO&amp;pgv_ref=qqmusic.y.index.Singer.Singer4">庄心妍</a>
+                            </li>
+							
+                            <li>
+                                <a class="singer_pic" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=000aHmbL2aPXWH&amp;pgv_ref=qqmusic.y.index.Singer.pic5" title="李荣浩"><img alt="李荣浩" title="李荣浩" width="50" height="50" src="http://i.gtimg.cn/music/photo/mid_singer_68/W/H/000aHmbL2aPXWH.jpg?max_age=2592000"></a>
+                                <a class="singer_name" title="李荣浩" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=000aHmbL2aPXWH&amp;pgv_ref=qqmusic.y.index.Singer.Singer5">李荣浩</a>
+                            </li>
+							
+                            <li>
+                                <a class="singer_pic" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=001BLpXF2DyJe2&amp;pgv_ref=qqmusic.y.index.Singer.pic6" title="林俊杰"><img alt="林俊杰" title="林俊杰" width="50" height="50" src="http://i.gtimg.cn/music/photo/mid_singer_68/e/2/001BLpXF2DyJe2.jpg?max_age=2592000"></a>
+                                <a class="singer_name" title="林俊杰" target="contentFrame" href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_singer_detail_cp.fcg?tpl=20&amp;singermid=001BLpXF2DyJe2&amp;pgv_ref=qqmusic.y.index.Singer.Singer6">林俊杰</a>
+                            </li>
+							
+                        </ul>
+                    </div>
+                    <div class="hot_singer_index">
+                    	<ul>
+                        	<li><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?singer_type=cn_man-all-1&amp;pgv_ref=qqmusic.y.index.Singer.link1" title="华语男歌手">华语男歌手</a></li>
+                            <li><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?singer_type=cn_woman-all-1&amp;pgv_ref=qqmusic.y.index.Singer.link2" title="华语女歌手">华语女歌手</a></li>
+                            <li><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?singer_type=cn_team-all-1&amp;pgv_ref=qqmusic.y.index.Singer.link3" title="华语组合">华语组合</a></li>
+                            <li><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?singer_type=k_man-all-1&amp;pgv_ref=qqmusic.y.index.Singer.link4" title="韩国男歌手">韩国男歌手</a></li>
+                            <li><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?singer_type=k_woman-all-1&amp;pgv_ref=qqmusic.y.index.Singer.link5" title="韩国女歌手">韩国女歌手</a></li>
+                            <li><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?singer_type=k_team-all-1&amp;pgv_ref=qqmusic.y.index.Singer.link6" title="韩国组合">韩国组合</a></li>
+                            <li><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?singer_type=j_man-all-1&amp;pgv_ref=qqmusic.y.index.Singer.link4" title="日本男歌手">日本男歌手</a></li>
+                            <li><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?singer_type=j_woman-all-1&amp;pgv_ref=qqmusic.y.index.Singer.link5" title="日本女歌手">日本女歌手</a></li>
+                            <li><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?singer_type=j_team-all-1&amp;pgv_ref=qqmusic.y.index.Singer.link6" title="日本组合">日本组合</a></li>
+                            <li><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?singer_type=eu_man-all-1&amp;pgv_ref=qqmusic.y.index.Singer.link7" title="欧美男歌手">欧美男歌手</a></li>
+                            <li><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?singer_type=eu_woman-all-1&amp;pgv_ref=qqmusic.y.index.Singer.link8" title="欧美女歌手">欧美女歌手</a></li>
+                            <li><a target="contentFrame" href="http://y.qq.com/y/static/singer/index/all_hot_1.html?singer_type=eu_team-all-1&amp;pgv_ref=qqmusic.y.index.Singer.link9" title="欧美组合">欧美组合</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--E 热门歌手-->
+            <!--S 精彩活动-->
+            <div class="mod_hot_event">
+            	<div class="title">
+                	<h2>精彩活动</h2>
+                </div>
+                <div class="mod_content">
+                    <div class="hot_event_list">
+                    	<ul class="pic_txt_list">
+							
+                        	<li class="top_pic"><a href="http://v.qq.com/live/p/topic/4194/preview.html?pgv_ref=qqmusic.y.index.Activity.pic" title="BIGBANG演唱会" target="_blank"><img width="220" alt="BIGBANG演唱会" src="http://i.gtimg.cn/music/common//upload/y/index/20160304114705.jpg?max_age=2592000">[精彩活动] BIGBANG演唱会</a></li>
+							
+                        	<li class="top_pic"><a href="http://v.qq.com/cover/z/zn53knfb8c19i7u.html?pgv_ref=qqmusic.y.index.Activity.pic" title="周蕙台北音乐会" target="_blank"><img width="220" alt="周蕙台北音乐会" src="http://i.gtimg.cn/music/common//upload/y/index/20160301111444.jpg?max_age=2592000">[精彩活动] 周蕙台北音乐会</a></li>
+							
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--E 精彩活动-->
+        </div>
+    </div>
+
+<script>
+if (type!='index'){
+	document.getElementById('index_div').style.display='none';
+	document.getElementById('contentFrame').style.display='block';
+}
+</script>
+<div class="foot" role="contentinfo">
+	<div class="follow_on">
+        <dl class="soft_download">
+            <dt>软件下载</dt>
+            <dd><a href="http://dldir1.qq.com/music/clntupate/QQMusicForYQQ.exe" target="_blank" id="J_pc_download" title="PC版">PC版</a><a href="https://itunes.apple.com/cn/app/qq-yin-le/id414603431?mt=8" target="_blank" id="J_iphone_download" title="iPhone客户端">iPhone客户端</a><a href="https://itunes.apple.com/cn/app/qq-yin-lehd-du-bo-zhong-guo/id429885089?l=en&amp;mt=8" id="J_ipad_download" target="_blank" title="iPad客户端">iPad客户端</a></dd>
+            <dd><a href="http://dldir1.qq.com/music/clntupate/mac/QQMusic3.1.1Build02.dmg" id="J_mac_download" target="_blank" title="MAC版">MAC版</a><a href="http://dldir1.qq.com/music/clntupate/QQMusic.apk" id="J_android_download" target="_blank" title="Android客户端">Android客户端</a><a href="http://dldir1.qq.com/qqtv/qqmusic/QQLiveForYQQ.exe" id="J_androidpad_download" target="_blank" title="Android Pad客户端">Android Pad客户端</a></dd>
+            <dd><a href="http://www.windowsphone.com/zh-cn/store/app/qq%E9%9F%B3%E4%B9%90/bb8d2603-091e-43e4-9857-651b4d38b6b4" id="J_winphone_download" target="_blank" title="Windows Phone版">Windows Phone版</a> </dd>
+        </dl>
+        <dl>
+            <dt>特色产品</dt>
+            <dd><a href="http://y.qq.com/#type=url&amp;url=http%3A%2F%2Fy.qq.com%2Fy%2Fstatic%2Fdown%2Fcar_introduce.html" target="_blank" title="车载互联">车载互联</a></dd>
+            <dd><a href="http://y.qq.com/y/static/down/qplay.html?pgv_ref=qqmusic.y.topmenu" target="_blank" title="QPlay">QPlay</a></dd>
+            <dd><a href="http://cp.music.qq.com?pgv_ref=qqmusic.y.topmenu" target="_blank" title="QQ音乐原创音乐平台">QQ音乐原创音乐平台</a></dd>
+        </dl>
+        <dl class="friends_link">
+            <dt>友情链接</dt>
+            <dd><a href="http://v.qq.com/" target="_blank" title="腾讯视频">腾讯视频</a><a href="http://z.qzone.com/" onclick="pgvClickStat('QZONE');" target="_blank" title="手机QQ空间">手机QQ空间</a><a href="http://im.qq.com/" target="_blank" title="最新版QQ">最新版QQ</a><a href="http://ke.qq.com?from=100" target="_blank" title="腾讯课堂">腾讯课堂</a><a href="http://e.qq.com/" target="_blank" title="腾讯社交广告">腾讯社交广告</a></dd>
+            <dd></dd>
+            <dd><a href="http://guanjia.qq.com/" target="_blank" title="电脑管家">电脑管家</a><a href="http://browser.qq.com/" target="_blank" title="QQ浏览器">QQ浏览器</a><a href="http://huabao.qzone.qq.com/" target="_blank" title="画报">画报</a><a href="http://www.weiyun.com/" target="_blank" title="腾讯微云">腾讯微云</a><a href="http://act.qzone.qq.com/" target="_blank" title="黄钻活动">黄钻活动</a><a href="http://xing.qq.com/" target="_blank" title="星钻">星钻</a></dd>
+            <dd><a href="http://fm.qq.com/" target="_blank" title="企鹅FM">企鹅FM</a><a href="http://www.qcloud.com/" target="_blank" title="腾讯云">腾讯云</a><a href="http://bbs.qcloud.com/" target="_blank" title="腾讯云论坛">腾讯云论坛</a><a href="http://buluo.qq.com/" target="_blank" title="兴趣部落">兴趣部落</a><a href="http://yunsou.qq.com/" target="_blank" title="腾讯云搜">腾讯云搜</a></dd>
+	    <dd></dd>		
+        </dl>
+    </div>	
+	<p class="footermenu">
+		<a href="http://www.tencent.com/" rel="nofollow" target="_blank" title="关于腾讯">关于腾讯</a> | 
+		<a href="http://www.tencent.com/index_e.shtml" rel="nofollow" target="_blank" title="About Tencent">About Tencent</a> | 
+		<a href="http://www.qq.com/contract.shtml" rel="nofollow" target="_blank" title="服务条款">服务条款</a> | 
+		<a href="http://y.qq.com/y/static/tips/service_tips.html" rel="nofollow" target="_blank" title="用户服务协议">用户服务协议</a> | 
+		<a href="http://www.tencentmind.com/" rel="nofollow" target="_blank" title="广告服务">广告服务</a> | 
+		<a href="http://hr.tencent.com/" rel="nofollow" target="_blank" title="腾讯招聘">腾讯招聘</a> | 
+		<a href="http://service.qq.com/" rel="nofollow" target="_blank" title="客服中心">客服中心</a> | 
+		<a href="http://www.qq.com/map/" rel="nofollow" target="_blank" title="网站导航">网站导航</a>
+	</p>
+	<p class="copyrighten">Copyright © 1998 - <script type="text/javascript">document.write(new Date().getFullYear());</script>2016 Tencent. <a target="_blank" href="http://www.tencent.com/en-us/le/copyrightstatement.shtml" rel="nofollow" title="All Rights Reserved.">All Rights Reserved.</a></p>
+	<p class="copyrightzh">腾讯公司 <a target="_blank" href="http://www.tencent.com/zh-cn/le/copyrightstatement.shtml" rel="nofollow" title="版权所有">版权所有</a> <a target="_blank" href="http://www.tencent.com/law/mo_law.shtml?/law/copyright.htm" rel="nofollow" title="腾讯网络文化经营许可证">腾讯网络文化经营许可证</a></p>
+</div>
+<div class="visitor_cp" id="divvisitorcp">
+	<button title="返回页面顶部" class="get_top" id="btntop">置顶</button>
+	<button title="如果您有意见，请反馈给我们！" class="get_feedback" onclick="g_topChn.support();">反馈</button>
+	<button title="返回页面底部" class="get_bottom" id="btnbottom">置底</button>
+</div>
+<!--二维码-->
+
+ <!-- QQ音乐微信号二维码关注_S -->
+<div class="popup_focus_qqmusic_qrcode" id="popup_download_qrcode" style="top:150px;">
+    <div class="download_box">
+        <h3>下载客户端</h3>
+        <p>
+            <a href="http://dldir1.qq.com/music/clntupate/QQMusicForYQQ.exe" id="popup_focus_pc" target="_blank" title="PC版"><i class="icon_d_pc"></i>PC版</a>
+            <a href="http://dldir1.qq.com/music/clntupate/mac/QQMusic3.1.1Build02.dmg" id="popup_focus_mac" target="_blank" title="Mac版"><i class="icon_d_mac"></i>Mac版</a>
+            <a href="https://itunes.apple.com/cn/app/qq-yin-le/id414603431?mt=8" id="popup_focus_iphone" target="_blank" title="iPhone版"><i class="icon_d_iphone"></i>iPhone版</a>
+            <a href="javascript:;" id="popup_focus_android" title="Android版"><i class="icon_d_android"></i>Android版</a>
+        </p>
+    </div>
+    <img src="http://i.gtimg.cn/mediastyle/musicprotal/img/qrcode_qqmusic.jpg?max_age=2592000">
+    <p>关注QQ音乐微信<br>精彩内容同分享</p>
+    <a href="javascript:;" id="popup_dialog_close" class="popup_dialog_close" title="关闭">关闭</a>
+    <div class="popup_focus_other">
+        <a href="javascript:;" id="popup_focus_sina" style="display:;" title="QQ音乐新浪微博"><i class="icon_d_sina"></i>QQ音乐新浪微博<a href="javascript:;" class="btn_sina_weibo"><wb:follow-button uid="2169129705" type="gray_1" width="67" height="24"><iframe src="http://widget.weibo.com/relationship/followbutton.php?btn=light&amp;style=1&amp;uid=2169129705&amp;width=67&amp;height=24&amp;language=zh_cn" width="67" height="24" frameborder="0" scrolling="no" marginheight="0"></iframe></wb:follow-button></a></a>
+    </div>
+</div>
+<div class="js_popup" id="layer_cover" style="display:none; position: absolute; top: 0px; left: 0px; background-color:#000;filter:alpha(opacity=50); opacity: 0.5; z-index: 100; width: 100%; height: 1110px; "></div> 
+<div class="js_popup" id="popup" style="display:none;width:590px;position:fixed;top:450px;left:0;z-index:999"> 
+    <div class="popup_dialog"> 
+        <div class="popup_dialog_hd"> 
+            <a href="javascript:;" id="js_popup_close" class="popup_dialog_close" title="关闭">关闭</a> 
+        </div> 
+        <div class="popup_dialog_cont"><div class="dialog_type_2"><div class="btns"><h3>QQ音乐Android版</h3><div class="btns"><a id="js_popup_focus_android" href="http://dldir1.qq.com/music/clntupate/QQMusic.apk" class="btn_normal btn_alone popup_down"><i class="icon_download"></i><span class="ver_font"> Android版</span><span class="push_font">立即下载</span></a></div></div><div class="qr_code"><h4>扫描二维码下载</h4><div class="qr_img" id="android_pic"><img src="http://i.gtimg.cn/music/common/upload/T_Y_SOFTWARE/1450859070211242471.jpg?max_age=2592000" onerror="this.src='http://i.gtimg.cn/music/common/upload/T_Y_SOFTWARE/1450859070211242471.jpg?max_age=2592000';this.onerror=null;"></div></div></div></div> 
+    </div>
+</div>
+ <!-- QQ音乐微信号二维码关注_E -->
+<!--Music Player Dock_S-->
+
+
+
+	<div class="m_player mini_version" id="divplayer" role="application" style="z-index: 100000; left: -540px;">
 	<div class="m_player_dock" id="divsongframe">
 		<div class="music_info" id="divsonginfo">
 			<a target="contentFrame" class="album_pic" title="">
-				<img src="http://imgcache.qq.com/mediastyle/y/img/cover_mine_130.jpg" alt="" onerror="this.src='http://imgcache.qq.com/mediastyle/y/img/cover_mine_130.jpg'">
+				<img src="./img/cover_mine_130.jpg" alt="" >
 			</a>
 			<div class="music_info_main">
 				<p class="music_name" title="听我想听的歌！">
@@ -86,11 +907,11 @@
 		<span>40</span>
 	</span>
 	<span title="显示歌词(L)" class="btn_lyrics_disabled" id="btnlrc">歌词(L)</span>
-	<button type="button" class="folded_bt" title="点击收起" id="btnfold">
+	<button type="button" class="folded_bt" title="点击展开" id="btnfold">
 		<span>点击收起/展开</span>
 	</button>
 	<!--play list-->
-	<div class="play_list_frame" id="divplayframe" style="display: block; opacity: 1;">
+	<div class="play_list_frame" id="divplayframe" style="display: none; opacity: 1;">
 		<div class="play_list_title">
 			<!-- 单曲FM修改 -->
 			<ul id="tab_container" style="width:270px;">

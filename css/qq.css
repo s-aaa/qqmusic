@@ -262,7 +262,7 @@ a:hover{color:#333}
 .popup_download_qrcode .popup_dialog_close,.popup_download_qrcode .popup_dialog_close:hover,.icon_d_pc,.icon_d_mac,.icon_d_iphone,.icon_d_android{background-image:url(http://imgcache.gtimg.cn/mediastyle/musicprotal/img/icon_sprite@2x.png);background-size:199px 600px}
 .main_top .frame_logo{background-image:url(http://imgcache.gtimg.cn/mediastyle/musicprotal/img/frame_logo@2x.png);background-size:295px 113px}}
 .m_player{width:563px;height:115px;position:fixed;_position:absolute;bottom:10px;left:-541px;box-shadow:3px 3px 6px RGBA(0,0,0,.42);border-radius:4px;z-index:10;left:0}
-.m_player .folded_bt{background:url(http://imgcache.gtimg.cn/mediastyle/musicprotal/img/player_bg.png) no-repeat 0 0;display:block;width:22px;height:115px;border:0;position:absolute;top:0;right:0}
+.m_player .folded_bt{background:url(http://imgcache.gtimg.cn/mediastyle/musicprotal/img/player_bg.png) no-repeat -23px 0;display:block;width:22px;height:115px;border:0;position:absolute;top:0;right:0}
 .m_player_folded .folded_bt{background:url(http://imgcache.gtimg.cn/mediastyle/musicprotal/img/player_bg.png) no-repeat -23px 0}
 .m_player_playing .folded_bt{background:url(http://imgcache.gtimg.cn/mediastyle/musicprotal/img/player_bg.png) no-repeat -46px 0;-webkit-animation-name:playing_button;-webkit-animation-duration:2.8s;-webkit-animation-timing-function:ease;-webkit-animation-delay:.6s;-webkit-animation-iteration-count:infinite;-webkit-animation-direction:alternate}
 @-webkit-keyframes playing_button{from{opacity:1}

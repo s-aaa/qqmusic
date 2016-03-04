@@ -271,6 +271,35 @@ document.addEventListener('readystatechange',function(){
 
      })();
 
+var btnfold=document.querySelector('#btnfold');
+btnfold.onclick=function(){
+  if (btnfold.getAttribute('title')=='点击收起') {
+    divplayer.style.left=-540+'px';
+    btnfold.setAttribute('title','点击展开');
+    btnfold.style.cssText='background-image:ulr(../img/player_bg.png);background-repeat: no-repeat;background-position: -23px 0';
+  }else{
+    divplayer.style.left=0+'px';
+    btnfold.setAttribute('title','点击收起');
+    btnfold.style.cssText='background-image:ulr(../img/player_bg.png);background-repeat: no-repeat;background-position: 0px 0';
+  }
+}
+
+var divplayframe=document.querySelector('#divplayframe');
+console.log(divplayframe)
+spansongnum1.onclick=function(){
+   if (spansongnum1.getAttribute('title')=='展开播放列表') {
+    divplayframe.style.display='block';
+    spansongnum1.setAttribute('title','隐藏播放列表');
+    
+  }else{
+    divplayframe.style.display='none';
+    spansongnum1.setAttribute('title','展开播放列表');
+  }
+}
+btnclose.onclick=function(){
+  divplayframe.style.display='none';
+  spansongnum1.setAttribute('title','展开播放列表');
+}
 
  }
 },false)
