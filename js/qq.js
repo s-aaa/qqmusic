@@ -26,7 +26,7 @@ document.addEventListener('readystatechange',function(){
 				lis[i].onclick=function(){
 					audio.src=yinyueku[this.index].src;
 					audio.play();
-					currentsongindex=this.index;
+          currentsongindex=this.index;
 					onsongchange();
 				}
 				lis[i].onmouseover=function(){
@@ -78,10 +78,11 @@ document.addEventListener('readystatechange',function(){
 				lis[i].classList.remove('play_current')
 			}
 			lis[currentsongindex].classList.add('play_current');
-            document.querySelector('.music_name').innerHTML=yinyueku[currentsongindex].name;
-            document.querySelector('.singer_name').innerHTML=yinyueku[currentsongindex].geshou;
-            document.querySelector('.play_date').innerHTML=yinyueku[currentsongindex].duration;
-            document.querySelector('.music_op').style.display='block';
+      console.log(document.querySelector('.music_name'))
+      document.querySelector('.musicname').innerHTML=yinyueku[currentsongindex].name;
+      document.querySelector('.singername').innerHTML=yinyueku[currentsongindex].geshou;
+      document.querySelector('.playdate').innerHTML=yinyueku[currentsongindex].duration;
+      document.querySelector('.music_op').style.display='block';
 		}
         
         // 时间转换函数
@@ -285,7 +286,6 @@ btnfold.onclick=function(){
 }
 
 var divplayframe=document.querySelector('#divplayframe');
-console.log(divplayframe)
 spansongnum1.onclick=function(){
    if (spansongnum1.getAttribute('title')=='展开播放列表') {
     divplayframe.style.display='block';
